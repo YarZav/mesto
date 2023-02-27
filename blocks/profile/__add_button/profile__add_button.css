@@ -12,3 +12,10 @@
     background-position: center;
     background-color: transparent;
 }
+
+@media screen and (max-width: 767px) {
+    .profile__add_button {
+        margin: 36px 19px 0 19px;
+        width: calc(100% - 38px);
+    }
+}
