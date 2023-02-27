@@ -32,3 +32,7 @@
 @import url("../pages/element/__info/element__info.css");
 @import url("../pages/element/__title/element__title.css");
 @import url("../pages/element/__heart_button/element__heart_button.css");
+
+/* Footer */
+@import url("../pages/footer/footer.css");
+@import url("../pages/footer/__author/footer__author.css");
