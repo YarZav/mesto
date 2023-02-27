@@ -1,0 +1,8 @@
+.profile__info {
+    margin: 0 0 0 30px;
+    color: #ffffff;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    row-gap: 16px;
+}
