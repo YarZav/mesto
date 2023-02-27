@@ -1,5 +1,5 @@
 .element {
-    margin: 0;
+    margin: 0 auto 0 auto;
     width: 282px;
     height: 361px;
     background-color: #ffffff;
