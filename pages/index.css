@@ -1,0 +1,53 @@
+/* min - 320 */
+/* max - 1280 */
+
+/* Vendor */
+@import url("../vendor/normalize.css");
+@import url("../fonts/fonts.css");
+
+/* Effects */
+@import url("../blocks/highlight/highlight.css");
+
+/* Body */
+@import url("../blocks/body/body.css");
+
+/* Page */
+@import url("../blocks/page/page.css");
+
+/* Header */
+@import url("../blocks/header/header.css");
+@import url("../blocks/header/__logo/header__logo.css");
+@import url("../blocks/header/__line/header__line.css");
+
+/* Profile */
+@import url("../blocks/profile/profile.css");
+@import url("../blocks/profile/__avatar/profile__avatar.css");
+@import url("../blocks/profile/__info/profile__info.css");
+@import url("../blocks/profile/__edit/profile__edit.css");
+@import url("../blocks/profile/__name/profile__name.css");
+@import url("../blocks/profile/__edit_button/profile__edit_button.css");
+@import url("../blocks/profile/__description/profile__description.css");
+@import url("../blocks/profile/__add_button/profile__add_button.css");
+
+/* Elements */
+@import url("../blocks/elements/elements.css");
+@import url("../blocks/element/element.css");
+@import url("../blocks/element/__image/element__image.css");
+@import url("../blocks/element/__info/element__info.css");
+@import url("../blocks/element/__title/element__title.css");
+@import url("../blocks/element/__heart_button/element__heart_button.css");
+
+/* Footer */
+@import url("../blocks/footer/footer.css");
+@import url("../blocks/footer/__author/footer__author.css");
+
+/* Popup */
+@import url("../blocks/popup/popup.css");
+@import url("../blocks/popup/__container/popup__container.css");
+@import url("../blocks/popup/__title/popup__title.css");
+@import url("../blocks/popup/__input/popup__input.css");
+@import url("../blocks/popup/__input/_name/popup__input_name.css");
+@import url("../blocks/popup/__input/_description/popup__input_description.css");
+@import url("../blocks/popup/__input_underline/popup__input_underline.css");
+@import url("../blocks/popup/__submit_button/popup__submit_button.css");
+@import url("../blocks/popup/__cross_button/popup__cross_button.css");
