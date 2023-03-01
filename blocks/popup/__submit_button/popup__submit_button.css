@@ -8,6 +8,11 @@
     font-weight: 400;
     font-size: 18px;
     line-height: 22px;
+    border-radius: 2px;
+}
+
+.popup__submit_button:hover {
+    
 }
 
 @media screen and (max-width: 767px) {
