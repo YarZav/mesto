@@ -1,4 +1,4 @@
-.highlight__light {
+.highlight {
     opacity: 1;
     -webkit-transition: .3s;
     -moz-transition: .3s;
@@ -7,6 +7,6 @@
     transition: .3s;
 }
   
-.highlight__light:hover {
+.highlight:hover {
     opacity: .8;
 }

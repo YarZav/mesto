@@ -6,8 +6,7 @@
 @import url("../fonts/fonts.css");
 
 /* Effects */
-@import url("../blocks/highlight/__dark/highlight__dark.css");
-@import url("../blocks/highlight/__light/highlight__light.css");
+@import url("../blocks/highlight/highlight.css");
 
 /* Body */
 @import url("../blocks/body/body.css");
