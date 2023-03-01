@@ -37,3 +37,14 @@
 /* Footer */
 @import url("../blocks/footer/footer.css");
 @import url("../blocks/footer/__author/footer__author.css");
+
+/* Popup */
+@import url("../blocks/popup/popup.css");
+@import url("../blocks/popup/__container/popup__container.css");
+@import url("../blocks/popup/__title/popup__title.css");
+@import url("../blocks/popup/__input/popup__input.css");
+@import url("../blocks/popup/__input/_name/popup__input_name.css");
+@import url("../blocks/popup/__input/_occupation/popup__input_occupation.css");
+@import url("../blocks/popup/__input_underline/popup__input_underline.css");
+@import url("../blocks/popup/__submit_button/popup__submit_button.css");
+@import url("../blocks/popup/__cross_button/popup__cross_button.css");

@@ -1,0 +1,11 @@
+.popup__input_underline {
+    margin: 13px 36px 0 36px;
+    background-color: rgba(0, 0, 0, 0.2);
+    height: 1px;
+}
+
+@media screen and (max-width: 767px) {
+    .popup__input_underline {
+        margin: 13px 22px 0 22px;
+    }
+}
