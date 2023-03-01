@@ -1,4 +1,4 @@
-.popup__cross_button {
+.popup__cross-button {
     position: absolute;
     margin: 0;
     width: 32px;
@@ -14,7 +14,7 @@
 }
 
 @media screen and (max-width: 767px) {
-    .popup__cross_button {
+    .popup__cross-button {
         width: 20px;
         height: 20px;
         right: 0px;

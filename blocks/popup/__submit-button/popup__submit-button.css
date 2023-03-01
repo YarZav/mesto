@@ -1,4 +1,4 @@
-.popup__submit_button {
+.popup__submit-button {
     margin: 48px 36px 37px 36px;
     width: calc(100% - 72px);
     height: 40px;
@@ -11,12 +11,8 @@
     border-radius: 2px;
 }
 
-.popup__submit_button:hover {
-    
-}
-
 @media screen and (max-width: 767px) {
-    .popup__submit_button {
+    .popup__submit-button {
         margin: 45px 22px 25px 22px;
         width: calc(100% - 44px);
         font-size: 14px;
