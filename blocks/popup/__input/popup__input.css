@@ -4,14 +4,14 @@
     border-top-style: hidden;
     border-right-style: hidden;
     border-left-style: hidden;
-    border-bottom: 1px solid rgba(0, 0, 0, 0.2);;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.2);
     font-weight: 400;
     font-size: 14px;
     line-height: 17px;
     color: #000000;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1024px) {
     .popup__input {
         margin: 0 22px 0 22px;
         font-size: 14px;

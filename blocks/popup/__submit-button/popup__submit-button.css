@@ -10,7 +10,7 @@
     border-radius: 2px;
 }
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: 1024px) {
     .popup__submit-button {
         margin: 45px 22px 25px 22px;
         padding-bottom: 14px;
