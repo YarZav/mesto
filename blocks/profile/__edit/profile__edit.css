@@ -4,3 +4,9 @@
     flex-direction: row;
     column-gap: 18px;
 }
+
+@media screen and (max-width: 1024px) {
+    .profile__edit {
+        justify-content: center;
+    }
+}
