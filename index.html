@@ -10,20 +10,6 @@
 </head>
 
 <body class="body">
-  <!-- Popup -->
-  <div class="popup">
-    <div class="popup__container">
-      <button class="popup__cross-button highlight" onclick="onTogglePopup()"></button>
-      <h2 class="popup__title">Редактировать профиль</h2>
-      <input class="popup__input popup__input_name" type="text" id="name" name="name" value="Жак-Ив Кусто">
-      <div class="popup__input-underline"></div>
-      <input class="popup__input popup__input_description" type="text" id="occupation" name="occupation"
-        value="Исследователь океана">
-      <div class="popup__input-underline"></div>
-      <button class="popup__submit-button highlight" onclick="onSubmit()">Сохранить</button>
-    </div>
-  </div>
-
   <div class="page">
     <!-- Header -->
     <header class="header">
@@ -40,11 +26,11 @@
         <div class="profile__info">
           <div class="profile__edit">
             <h1 class="profile__name">Жак-Ив Кусто</h1>
-            <button class="profile__edit-button highlight" onclick="onTogglePopup()"></button>
+            <button class="profile__edit-button highlight" type="button"></button>
           </div>
           <p class="profile__description">Исследователь океана</p>
         </div>
-        <button class="profile__add-button highlight"></button>
+        <button class="profile__add-button highlight" type="button"></button>
       </section>
 
       <!-- Elements -->
@@ -53,42 +39,42 @@
           <img class="element__image" src="images/karashaevsk.jpg" alt="Карачаевск">
           <div class="element__info">
             <h2 class="element__title">Карачаевск</h2>
-            <button class="element__heart-button highlight"></button>
+            <button class="element__heart-button highlight" type="button"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="images/elbrus.png" alt="Гора Эльбрус">
           <div class="element__info">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__heart-button highlight"></button>
+            <button class="element__heart-button highlight" type="button"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="images/dombai.png" alt="Домбай">
           <div class="element__info">
             <h2 class="element__title">Домбай</h2>
-            <button class="element__heart-button highlight"></button>
+            <button class="element__heart-button highlight" type="butto"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="images/elbrus.png" alt="Гора Эльбрус">
           <div class="element__info">
             <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__heart-button highlight"></button>
+            <button class="element__heart-button highlight" type="button"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="images/dombai.png" alt="Домбай">
           <div class="element__info">
             <h2 class="element__title">Домбай</h2>
-            <button class="element__heart-button highlight"></button>
+            <button class="element__heart-button highlight" type="button"></button>
           </div>
         </div>
         <div class="element">
           <img class="element__image" src="images/karashaevsk.jpg" alt="Карачаевск">
           <div class="element__info">
             <h2 class="element__title">Карачаево-Черкессия</h2>
-            <button class="element__heart-button highlight"></button>
+            <button class="element__heart-button highlight" type="button"></button>
           </div>
         </div>
       </section>
@@ -99,6 +85,19 @@
       <h3 class="footer__author">&copy; 2020 Mesto Russia</h3>
     </footer>
 
+  </div>
+
+  <!-- Popup -->
+  <div class="popup">
+    <form class="popup__container">
+      <button class="popup__cross-button highlight" type="button"></button>
+      <h2 class="popup__title">Редактировать профиль</h2>
+      <input class="popup__input popup__input__name" type="text" id="name" name="name" value="Жак-Ив Кусто"
+        placeholder="Имя и Фамилия">
+      <input class="popup__input popup__input__description" type="text" id="occupation" name="occupation"
+        value="Исследователь океана" placeholder="Занятость">
+      <button class="popup__submit-button highlight" type="button">Сохранить</button>
+    </form>
   </div>
 
   <!-- JS -->
