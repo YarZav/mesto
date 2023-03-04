@@ -17,7 +17,7 @@
         width: 20px;
         height: 20px;
         top: calc(50% - (332px / 2) - 36px);
-        right: calc(50% - (282px / 2));    
+        right: calc(50% - (282px / 2));
         background-size: 20px 20px;
     }
 }
