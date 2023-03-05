@@ -1,9 +1,10 @@
 .popup__cross-button {
-    position: absolute;
+    position: relative;
+    margin: 0;
+    bottom: 8px;
+    left: 239px;
     width: 32px;
     height: 32px;
-    top: calc(50% - (330px / 2) - 40px);
-    right: calc(50% - (430px / 2) - 40px);
     background-image: url("../../../images/cross_button.svg");
     background-size: 32px 32px;
     background-repeat: no-repeat;
@@ -14,10 +15,10 @@
 
 @media screen and (max-width: 1024px) {
     .popup__cross-button {
+        bottom: 8px;
+        left: 131px;    
         width: 20px;
         height: 20px;
-        top: calc(50% - (332px / 2) - 36px);
-        right: calc(50% - (282px / 2));
         background-size: 20px 20px;
     }
 }

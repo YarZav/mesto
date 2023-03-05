@@ -3,7 +3,7 @@ let body = document.querySelector("body");
 
 let popup = body.querySelector(".popup");
 let popupContainer = popup.querySelector(".popup__container");
-let popupCrossButton = popupContainer.querySelector(".popup__cross-button");
+let popupCrossButton = popup.querySelector(".popup__cross-button");
 let popupSubmitButton = popupContainer.querySelector(".popup__submit-button");
 let popupName = popupContainer.querySelector(".popup__input-name");
 let popupDescription = popupContainer.querySelector(".popup__input-description");
@@ -15,13 +15,15 @@ let profileName = profileEdit.querySelector(".profile__name");
 let profileEditButton = profileEdit.querySelector(".profile__edit-button");
 let profileDescription = profileInfo.querySelector(".profile__description");
 
-popupCrossButton.addEventListener("click", onClosePopup)
-popupSubmitButton.addEventListener("click", onSubmitPopup)
-profileEditButton.addEventListener("click", onShowPopup)
+popupCrossButton.addEventListener("click", onClosePopup);
+popupContainer.addEventListener("submit", onSubmitPopup);
+profileEditButton.addEventListener("click", onShowPopup);
 
 // Name and description
 
-function onSubmitPopup() {
+function onSubmitPopup(evt) {
+    evt.preventDefault();
+
     profileName.textContent = popupName.value;
     profileDescription.textContent = popupDescription.value;
 

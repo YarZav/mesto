@@ -1,5 +1,4 @@
 .popup__container {
-    margin: calc((100vh - 330px) / 2) auto auto auto;
     width: 430px;
     height: 330px;
     display: flex;
