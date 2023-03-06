@@ -1,8 +1,8 @@
 .popup__cross-button {
-    position: relative;
+    position: absolute;
     margin: 0;
-    bottom: 8px;
-    left: 239px;
+    top: -40px;
+    right: -40px;
     width: 32px;
     height: 32px;
     background-image: url("../../../images/cross_button.svg");
@@ -15,9 +15,9 @@
 
 @media screen and (max-width: 1024px) {
     .popup__cross-button {
-        bottom: 8px;
+        top: -36px;
+        right: 0;
         width: 20px;
-        left: 131px;
         height: 20px;
         background-size: 20px 20px;
     }
