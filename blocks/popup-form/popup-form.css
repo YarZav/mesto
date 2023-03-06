@@ -1,5 +1,5 @@
 .popup-form {
-    margin: 0;
+    margin: auto 0 0 0;
     display: flex;
     flex-direction: column;
     justify-content: center;
