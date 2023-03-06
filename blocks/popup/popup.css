@@ -1,4 +1,5 @@
 .popup {
+    margin: 0;
     position: fixed;
     flex-direction: column;
     align-items: center;

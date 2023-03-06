@@ -45,9 +45,12 @@
 @import url("../blocks/popup/popup.css");
 @import url("../blocks/popup/_opened/popup_opened.css");
 @import url("../blocks/popup/__container/popup__container.css");
-@import url("../blocks/popup/__form/popup__form.css");
 @import url("../blocks/popup/__title/popup__title.css");
-@import url("../blocks/popup/__input-name/popup__input-name.css");
-@import url("../blocks/popup/__input-description/popup__input-description.css");
-@import url("../blocks/popup/__submit-button/popup__submit-button.css");
 @import url("../blocks/popup/__cross-button/popup__cross-button.css");
+
+/* Popup form */
+@import url("../blocks/popup-form/popup-form.css");
+@import url("../blocks/popup-form/__input/popup-form__input.css");
+@import url("../blocks/popup-form/__input/_name/popup-form__input_name.css");
+@import url("../blocks/popup-form/__input/_description/popup-form__input_description.css");
+@import url("../blocks/popup-form/__button/popup-form__button.css");
