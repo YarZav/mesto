@@ -8,5 +8,7 @@
 @media screen and (max-width: 1024px) {
     .profile__edit {
         justify-content: center;
+        transform: translate(36px, 0);
+        margin-right: 37px;
     }
 }
