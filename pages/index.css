@@ -51,6 +51,6 @@
 /* Popup form */
 @import url("../blocks/popup-form/popup-form.css");
 @import url("../blocks/popup-form/__input/popup-form__input.css");
-@import url("../blocks/popup-form/__input/_name/popup-form__input_name.css");
-@import url("../blocks/popup-form/__input/_description/popup-form__input_description.css");
+@import url("../blocks/popup-form/__input/_type_name/popup-form__input_type_name.css");
+@import url("../blocks/popup-form/__input/_type_description/popup-form__input_type_description.css");
 @import url("../blocks/popup-form/__button/popup-form__button.css");

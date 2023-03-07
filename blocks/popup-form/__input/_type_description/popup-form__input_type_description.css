@@ -1,9 +1,9 @@
-.popup-form__input_description {
+.popup-form__input_type_description {
     margin: 28px 36px 48px 36px;
 }
 
 @media screen and (max-width: 1024px) {
-    .popup-form__input_description {
+    .popup-form__input_type_description {
         margin: 30px 22px 44px 22px;
     }
 }

@@ -5,8 +5,8 @@ let popup = body.querySelector(".popup");
 let popupContainer = popup.querySelector(".popup__container");
 let popupCrossButton = popup.querySelector(".popup__cross-button");
 
-let popupFormName = popupContainer.querySelector(".popup-form__input_name");
-let popupFormDescription = popupContainer.querySelector(".popup-form__input_description");
+let popupFormName = popupContainer.querySelector(".popup-form__input_type_name");
+let popupFormDescription = popupContainer.querySelector(".popup-form__input_type_description");
 
 let profile = body.querySelector(".profile");
 let profileInfo = profile.querySelector(".profile__info");
