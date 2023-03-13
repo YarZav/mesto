@@ -73,8 +73,11 @@ function setupUI() {
         element.querySelector(".element__image").src = initialCard.link;
         element.querySelector(".element__info").querySelector(".element__title").textContent = initialCard.name;
         
-        let elementheartButton = element.querySelector(".element__info").querySelector(".element__heart-button");
-        elementheartButton.addEventListener("click", onLikePlace);
+        let elementHeartButton = element.querySelector(".element__info").querySelector(".element__heart-button");
+        elementHeartButton.addEventListener("click", onLikePlace);
+
+        let elementDeleteButton = element.querySelector(".element__delete-button");
+        elementDeleteButton.addEventListener("click", onDeletePlace);
 
         elements.append(element);
     });
@@ -85,12 +88,15 @@ function setupUI() {
 function onEditProfile() {
   currentPopupType = PopupType.PROFILE;
 
-  popup.classList.add("popup_opened");
+  popup.style.visibility = "visible";
+  popup.style.opacity = 1;
+
   setDefaulProfilePopupValues();
 }
 
 function onClosePopup() {
-    popup.classList.remove("popup_opened");
+  popup.style.visibility = "hidden";
+  popup.style.opacity = 0;
 }
 
 function setDefaulProfilePopupValues() {
@@ -104,7 +110,9 @@ function setDefaulProfilePopupValues() {
 function onAddPlace() {
   currentPopupType = PopupType.PLACE;
 
-  popup.classList.add("popup_opened");
+  popup.style.visibility = "visible";
+  popup.style.opacity = 1;
+
   setDefaulPlacePopupValues();
 }
 
@@ -137,7 +145,6 @@ function onSubmitPopup(event) {
 // Element
 
 function onLikePlace(event) {
-  console.log(event);
   const eventTarget = event.target;
 
   if (eventTarget.classList.contains("element__heart-button_active")) {
@@ -145,4 +152,8 @@ function onLikePlace(event) {
   } else {
     eventTarget.classList.add("element__heart-button_active");
   }
+}
+
+function onDeletePlace(event) {
+  event.target.parentElement.remove();
 }
