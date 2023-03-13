@@ -34,48 +34,16 @@
 
       <!-- Elements -->
       <section class="elements">
-        <div class="element">
-          <img class="element__image" src="images/karashaevsk.jpg" alt="Карачаевск">
-          <div class="element__info">
-            <h2 class="element__title">Карачаевск</h2>
-            <button class="element__heart-button highlight" type="button"></button>
+        <!-- Template -->
+        <template id="element-template">
+          <div class="element">
+            <img class="element__image" src="" alt="Фото места">
+            <div class="element__info">
+              <h2 class="element__title"></h2>
+              <button class="element__heart-button highlight" type="button"></button>
+            </div>
           </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="images/elbrus.png" alt="Гора Эльбрус">
-          <div class="element__info">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__heart-button highlight" type="button"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="images/dombai.png" alt="Домбай">
-          <div class="element__info">
-            <h2 class="element__title">Домбай</h2>
-            <button class="element__heart-button highlight" type="button"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="images/elbrus.png" alt="Гора Эльбрус">
-          <div class="element__info">
-            <h2 class="element__title">Гора Эльбрус</h2>
-            <button class="element__heart-button highlight" type="button"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="images/dombai.png" alt="Домбай">
-          <div class="element__info">
-            <h2 class="element__title">Домбай</h2>
-            <button class="element__heart-button highlight" type="button"></button>
-          </div>
-        </div>
-        <div class="element">
-          <img class="element__image" src="images/karashaevsk.jpg" alt="Карачаевск">
-          <div class="element__info">
-            <h2 class="element__title">Карачаево-Черкессия</h2>
-            <button class="element__heart-button highlight" type="button"></button>
-          </div>
-        </div>
+        </template>
       </section>
     </main>
 
@@ -90,12 +58,12 @@
   <div class="popup">
     <div class="popup__container">
       <button class="popup__cross-button highlight" type="button"></button>
-      <h2 class="popup__title">Редактировать профиль</h2>
+      <h2 class="popup__title"></h2>
       <form class="popup-form" name="popup-form">
-        <input class="popup-form__input popup-form__input_type_name" type="text" id="name" name="name"
-          value="Жак-Ив Кусто" placeholder="Имя и Фамилия">
+        <input class="popup-form__input popup-form__input_type_name" type="text" id="name" name="name" value=""
+          placeholder="">
         <input class="popup-form__input popup-form__input_type_description" type="text" id="occupation"
-          name="occupation" value="Исследователь океана" placeholder="Занятость">
+          name="occupation" value="" placeholder="">
         <input class="popup-form__button highlight" type="submit" value="Сохранить">
       </form>
     </div>
