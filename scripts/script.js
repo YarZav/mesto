@@ -17,6 +17,13 @@ let popupTitle = popupContainer.querySelector(".popup__title");
 let popupFormName = popupContainer.querySelector(".popup-form__input_type_name");
 let popupFormDescription = popupContainer.querySelector(".popup-form__input_type_description");
 
+let popupImage = body.querySelector(".popup_type_image");
+let popupImageContainer = popupImage.querySelector(".popup__container-image");
+let popupImageCrossButton = popupImageContainer.querySelector(".popup__cross-button");
+let popupImageFigure = popupImageContainer.querySelector(".popup__figure");
+let popupImageFigureImage = popupImageFigure.querySelector(".popup__image");
+let popupImageFigureDescription = popupImageFigure.querySelector(".popup__image-description");
+
 let profile = body.querySelector(".profile");
 let profileInfo = profile.querySelector(".profile__info");
 let profileEdit = profileInfo.querySelector(".profile__edit");
@@ -30,8 +37,11 @@ let elementTemplate = elements.querySelector("#element-template").content;
 
 popupCrossButton.addEventListener("click", onClosePopup);
 popupContainer.addEventListener("submit", onSubmitPopup);
+
 profileEditButton.addEventListener("click", onEditProfile);
 profileAddButton.addEventListener("click", onAddPlace);
+
+popupImageCrossButton.addEventListener("click", onClosePopupImage);
 
 // Mock data
 
@@ -78,6 +88,11 @@ function setupUI() {
 
         let elementDeleteButton = element.querySelector(".element__delete-button");
         elementDeleteButton.addEventListener("click", onDeletePlace);
+
+        let elementImage = element.querySelector(".element__image");
+        elementImage.addEventListener("click", function() {
+          onShowImage(initialCard.link, initialCard.name);
+        });
 
         elements.append(element);
     });
@@ -136,10 +151,18 @@ function onSubmitPopup(event) {
     const element = elementTemplate.querySelector(".element").cloneNode(true);
     element.querySelector(".element__image").src = popupFormDescription.value;
     element.querySelector(".element__info").querySelector(".element__title").textContent = popupFormName.value;
+    element.querySelector(".element__image").addEventListener("click", function() {
+      onShowImage(popupFormDescription.value, popupFormName.value);
+    });
     elements.prepend(element);
   }
 
   onClosePopup();
+}
+
+function onClosePopupImage() {
+  popupImage.style.visibility = "hidden";
+  popupImage.style.opacity = 0;
 }
 
 // Element
@@ -156,4 +179,12 @@ function onLikePlace(event) {
 
 function onDeletePlace(event) {
   event.target.parentElement.remove();
+}
+
+function onShowImage(link, name) {
+  popupImage.style.visibility = "visible";
+  popupImage.style.opacity = 1;
+
+  popupImageFigureImage.src = link;
+  popupImageFigureDescription.textContent = name;
 }
