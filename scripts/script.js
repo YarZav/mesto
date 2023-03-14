@@ -1,24 +1,21 @@
-// Properties
-
-var PopupType = {
-  PROFILE: { value: 0 }, 
-  PLACE: { value: 1 }
-};
-var currentPopupType;
-
 // UI elements
 
 let body = document.querySelector("body");
 
-let popup = body.querySelector(".popup");
-let popupContainer = popup.querySelector(".popup__container");
-let popupCrossButton = popup.querySelector(".popup__cross-button");
-let popupTitle = popupContainer.querySelector(".popup__title");
-let popupFormName = popupContainer.querySelector(".popup-form__input_type_name");
-let popupFormDescription = popupContainer.querySelector(".popup-form__input_type_description");
+let popupProfile = body.querySelector(".popup_type_profile");
+let popupProfileContainer = popupProfile.querySelector(".popup__container_type_profile");
+let popupProfileCrossButton = popupProfileContainer.querySelector(".popup__cross-button");
+let popupProfileFormName = popupProfileContainer.querySelector(".popup-form__input_type_name");
+let popupProfileFormDescription = popupProfileContainer.querySelector(".popup-form__input_type_description");
+
+let popupPlace = body.querySelector(".popup_type_place");
+let popupPlaceContainer = popupPlace.querySelector(".popup__container_type_place");
+let popupPlaceCrossButton = popupPlaceContainer.querySelector(".popup__cross-button");
+let popupPlaceFormName = popupPlaceContainer.querySelector(".popup-form__input_type_name");
+let popupPlaceFormDescription = popupPlaceContainer.querySelector(".popup-form__input_type_description");
 
 let popupImage = body.querySelector(".popup_type_image");
-let popupImageContainer = popupImage.querySelector(".popup__container-image");
+let popupImageContainer = popupImage.querySelector(".popup__container_type_image");
 let popupImageCrossButton = popupImageContainer.querySelector(".popup__cross-button");
 let popupImageFigure = popupImageContainer.querySelector(".popup__figure");
 let popupImageFigureImage = popupImageFigure.querySelector(".popup__image");
@@ -35,11 +32,14 @@ let profileAddButton = profile.querySelector(".profile__add-button");
 let elements = body.querySelector(".elements");
 let elementTemplate = elements.querySelector("#element-template").content;
 
-popupCrossButton.addEventListener("click", onClosePopup);
-popupContainer.addEventListener("submit", onSubmitPopup);
-
 profileEditButton.addEventListener("click", onEditProfile);
 profileAddButton.addEventListener("click", onAddPlace);
+
+popupProfileCrossButton.addEventListener("click", onClosePopupProfile);
+popupProfileContainer.addEventListener("submit", onSubmitPopupProfile);
+
+popupPlaceCrossButton.addEventListener("click", onClosePopupPlace);
+popupPlaceContainer.addEventListener("submit", onSubmitPopupPlace);
 
 popupImageCrossButton.addEventListener("click", onClosePopupImage);
 
@@ -79,86 +79,67 @@ setupUI();
 function setupUI() {
     initialCards.forEach((initialCard) => {
         const element = elementTemplate.querySelector(".element").cloneNode(true);
-
-        element.querySelector(".element__image").src = initialCard.link;
-        element.querySelector(".element__info").querySelector(".element__title").textContent = initialCard.name;
-        
-        let elementHeartButton = element.querySelector(".element__info").querySelector(".element__heart-button");
-        elementHeartButton.addEventListener("click", onLikePlace);
-
-        let elementDeleteButton = element.querySelector(".element__delete-button");
-        elementDeleteButton.addEventListener("click", onDeletePlace);
-
-        let elementImage = element.querySelector(".element__image");
-        elementImage.addEventListener("click", function() {
-          onShowImage(initialCard.link, initialCard.name);
-        });
-
-        elements.append(element);
+        prependElement(element, initialCard.link, initialCard.name);
     });
 }
 
-// Popup
+// Popup Profile
 
 function onEditProfile() {
-  currentPopupType = PopupType.PROFILE;
-
-  popup.style.visibility = "visible";
-  popup.style.opacity = 1;
-
   setDefaulProfilePopupValues();
+
+  popupProfile.style.visibility = "visible";
+  popupProfile.style.opacity = 1;
 }
 
-function onClosePopup() {
-  popup.style.visibility = "hidden";
-  popup.style.opacity = 0;
+function onClosePopupProfile() {
+  popupProfile.style.visibility = "hidden";
+  popupProfile.style.opacity = 0;
 }
 
 function setDefaulProfilePopupValues() {
-    popupTitle.textContent = "Редактировать профиль";
-    popupFormName.value = profileName.textContent;
-    popupFormDescription.value = profileDescription.textContent;
-    popupFormName.placeholder = "Имя и Фамилия";
-    popupFormDescription.placeholder = "Занятость";
+  popupProfileFormName.value = profileName.textContent;
+  popupProfileFormDescription.value = profileDescription.textContent;
 }
 
+function onSubmitPopupProfile(event) {
+  event.preventDefault();
+
+  profileName.textContent = popupProfileFormName.value;
+  profileDescription.textContent = popupProfileFormDescription.value;
+
+  onClosePopupProfile();
+}
+
+// Popup Place
+
 function onAddPlace() {
-  currentPopupType = PopupType.PLACE;
-
-  popup.style.visibility = "visible";
-  popup.style.opacity = 1;
-
   setDefaulPlacePopupValues();
+
+  popupPlace.style.visibility = "visible";
+  popupPlace.style.opacity = 1;
+}
+
+function onClosePopupPlace() {
+  popupPlace.style.visibility = "hidden";
+  popupPlace.style.opacity = 0;
 }
 
 function setDefaulPlacePopupValues() {
-  popupTitle.textContent = "Новое место";
-  popupFormName.value = "";
-  popupFormDescription.value = "";
-  popupFormName.placeholder = "Название";
-  popupFormDescription.placeholder = "Ссылка на картинку";
+  popupPlaceFormName.value = "";
+  popupPlaceFormDescription.value = "";
 }
 
-function onSubmitPopup(event) {
+function onSubmitPopupPlace(event) {
   event.preventDefault();
 
-  if (currentPopupType == PopupType.PROFILE) {
-    profileName.textContent = popupFormName.value;
-    profileDescription.textContent = popupFormDescription.value;
-  }
+  const element = elementTemplate.querySelector(".element").cloneNode(true);
+  prependElement(element, popupPlaceFormDescription.value, popupPlaceFormName.value);
 
-  if (currentPopupType == PopupType.PLACE) {
-    const element = elementTemplate.querySelector(".element").cloneNode(true);
-    element.querySelector(".element__image").src = popupFormDescription.value;
-    element.querySelector(".element__info").querySelector(".element__title").textContent = popupFormName.value;
-    element.querySelector(".element__image").addEventListener("click", function() {
-      onShowImage(popupFormDescription.value, popupFormName.value);
-    });
-    elements.prepend(element);
-  }
-
-  onClosePopup();
+  onClosePopupPlace();
 }
+
+// Popup Image
 
 function onClosePopupImage() {
   popupImage.style.visibility = "hidden";
@@ -168,6 +149,7 @@ function onClosePopupImage() {
 // Element
 
 function onLikePlace(event) {
+  console.log("Like");
   const eventTarget = event.target;
 
   if (eventTarget.classList.contains("element__heart-button_active")) {
@@ -178,6 +160,7 @@ function onLikePlace(event) {
 }
 
 function onDeletePlace(event) {
+  console.log("delete");
   event.target.parentElement.remove();
 }
 
@@ -187,4 +170,21 @@ function onShowImage(link, name) {
 
   popupImageFigureImage.src = link;
   popupImageFigureDescription.textContent = name;
+}
+
+function prependElement(element, src, title) {
+  element.querySelector(".element__image").src = src;
+  element.querySelector(".element__info").querySelector(".element__title").textContent = title;
+
+  let elementHeartButton = element.querySelector(".element__info").querySelector(".element__heart-button");
+  elementHeartButton.addEventListener("click", onLikePlace);
+
+  let elementDeleteButton = element.querySelector(".element__delete-button");
+  elementDeleteButton.addEventListener("click", onDeletePlace);
+
+  element.querySelector(".element__image").addEventListener("click", function() {
+    onShowImage(src, title);
+  });
+
+  elements.prepend(element);
 }
