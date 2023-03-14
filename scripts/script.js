@@ -15,7 +15,7 @@ let popupPlaceFormName = popupPlaceContainer.querySelector(".popup-form__input_t
 let popupPlaceFormDescription = popupPlaceContainer.querySelector(".popup-form__input_type_description");
 
 let popupImage = body.querySelector(".popup_type_image");
-let popupImageContainer = popupImage.querySelector(".popup__container_type_image");
+let popupImageContainer = popupImage.querySelector(".popup__container-image");
 let popupImageCrossButton = popupImageContainer.querySelector(".popup__cross-button");
 let popupImageFigure = popupImageContainer.querySelector(".popup__figure");
 let popupImageFigureImage = popupImageFigure.querySelector(".popup__image");
