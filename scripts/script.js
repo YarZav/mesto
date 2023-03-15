@@ -29,8 +29,8 @@ const profileEditButton = profileEdit.querySelector(".profile__edit-button");
 const profileDescription = profileInfo.querySelector(".profile__description");
 const profileAddButton = profile.querySelector(".profile__add-button");
 
-const elements = body.querySelector(".elements");
-const elementTemplate = elements.querySelector("#element-template").content;
+const elementContainer = body.querySelector(".elements");
+const elementTemplate = elementContainer.querySelector("#element-template").content;
 
 profileEditButton.addEventListener("click", onEditProfile);
 profileAddButton.addEventListener("click", onAddPlace);
@@ -78,8 +78,8 @@ setupUI();
 
 function setupUI() {
     initialCards.forEach((initialCard) => {
-        const element = elementTemplate.querySelector(".element").cloneNode(true);
-        prependElement(element, initialCard.link, initialCard.name);
+      const element = createElement(initialCard.link, initialCard.name);
+      elementContainer.prepend(element);
     });
 }
 
@@ -88,13 +88,11 @@ function setupUI() {
 function onEditProfile() {
   setDefaulProfilePopupValues();
 
-  popupProfile.style.visibility = "visible";
-  popupProfile.style.opacity = 1;
+  openPopup(popupProfile);
 }
 
 function onClosePopupProfile() {
-  popupProfile.style.visibility = "hidden";
-  popupProfile.style.opacity = 0;
+  closePopup(popupProfile);
 }
 
 function setDefaulProfilePopupValues() {
@@ -116,13 +114,11 @@ function onSubmitPopupProfile(event) {
 function onAddPlace() {
   setDefaulPlacePopupValues();
 
-  popupPlace.style.visibility = "visible";
-  popupPlace.style.opacity = 1;
+  openPopup(popupPlace);
 }
 
 function onClosePopupPlace() {
-  popupPlace.style.visibility = "hidden";
-  popupPlace.style.opacity = 0;
+  closePopup(popupPlace);
 }
 
 function setDefaulPlacePopupValues() {
@@ -133,8 +129,8 @@ function setDefaulPlacePopupValues() {
 function onSubmitPopupPlace(event) {
   event.preventDefault();
 
-  const element = elementTemplate.querySelector(".element").cloneNode(true);
-  prependElement(element, popupPlaceFormDescription.value, popupPlaceFormName.value);
+  const element = createElement(popupPlaceFormDescription.value, popupPlaceFormName.value);
+  elementContainer.prepend(element);
 
   onClosePopupPlace();
 }
@@ -142,38 +138,42 @@ function onSubmitPopupPlace(event) {
 // Popup Image
 
 function onClosePopupImage() {
-  popupImage.style.visibility = "hidden";
-  popupImage.style.opacity = 0;
+  closePopup(popupImage);
+}
+
+// Popup
+
+function openPopup(popup) {
+  popup.classList.add("popup_opened");
+}
+
+function closePopup(popup) {
+  popup.classList.remove("popup_opened");
 }
 
 // Element
 
 function onLikePlace(event) {
-  console.log("Like");
-  const eventTarget = event.target;
-
-  if (eventTarget.classList.contains("element__heart-button_active")) {
-    eventTarget.classList.remove("element__heart-button_active");
-  } else {
-    eventTarget.classList.add("element__heart-button_active");
-  }
+  event.target.classList.toggle("element__heart-button_active");
 }
 
 function onDeletePlace(event) {
-  console.log("delete");
-  event.target.parentElement.remove();
+  event.target.closest(".element").remove();
 }
 
 function onShowImage(link, name) {
-  popupImage.style.visibility = "visible";
-  popupImage.style.opacity = 1;
+  openPopup(popupImage);
 
   popupImageFigureImage.src = link;
+  popupImageFigureImage.alt = name;
   popupImageFigureDescription.textContent = name;
 }
 
-function prependElement(element, src, title) {
+function createElement(src, title) {
+  const element = elementTemplate.querySelector(".element").cloneNode(true);
+
   element.querySelector(".element__image").src = src;
+  element.querySelector(".element__image").alt = title;
   element.querySelector(".element__info").querySelector(".element__title").textContent = title;
 
   const elementHeartButton = element.querySelector(".element__info").querySelector(".element__heart-button");
@@ -186,5 +186,5 @@ function prependElement(element, src, title) {
     onShowImage(src, title);
   });
 
-  elements.prepend(element);
+  return element
 }
