@@ -1,36 +1,36 @@
 // UI elements
 
-let body = document.querySelector("body");
+const body = document.querySelector("body");
 
-let popupProfile = body.querySelector(".popup_type_profile");
-let popupProfileContainer = popupProfile.querySelector(".popup__container_type_profile");
-let popupProfileCrossButton = popupProfileContainer.querySelector(".popup__cross-button");
-let popupProfileFormName = popupProfileContainer.querySelector(".popup-form__input_type_name");
-let popupProfileFormDescription = popupProfileContainer.querySelector(".popup-form__input_type_description");
+const popupProfile = body.querySelector(".popup_type_profile");
+const popupProfileContainer = popupProfile.querySelector(".popup__container_type_profile");
+const popupProfileCrossButton = popupProfileContainer.querySelector(".popup__cross-button");
+const popupProfileFormName = popupProfileContainer.querySelector(".popup-form__input_type_name");
+const popupProfileFormDescription = popupProfileContainer.querySelector(".popup-form__input_type_description");
 
-let popupPlace = body.querySelector(".popup_type_place");
-let popupPlaceContainer = popupPlace.querySelector(".popup__container_type_place");
-let popupPlaceCrossButton = popupPlaceContainer.querySelector(".popup__cross-button");
-let popupPlaceFormName = popupPlaceContainer.querySelector(".popup-form__input_type_name");
-let popupPlaceFormDescription = popupPlaceContainer.querySelector(".popup-form__input_type_description");
+const popupPlace = body.querySelector(".popup_type_place");
+const popupPlaceContainer = popupPlace.querySelector(".popup__container_type_place");
+const popupPlaceCrossButton = popupPlaceContainer.querySelector(".popup__cross-button");
+const popupPlaceFormName = popupPlaceContainer.querySelector(".popup-form__input_type_name");
+const popupPlaceFormDescription = popupPlaceContainer.querySelector(".popup-form__input_type_description");
 
-let popupImage = body.querySelector(".popup_type_image");
-let popupImageContainer = popupImage.querySelector(".popup__container-image");
-let popupImageCrossButton = popupImageContainer.querySelector(".popup__cross-button");
-let popupImageFigure = popupImageContainer.querySelector(".popup__figure");
-let popupImageFigureImage = popupImageFigure.querySelector(".popup__image");
-let popupImageFigureDescription = popupImageFigure.querySelector(".popup__image-description");
+const popupImage = body.querySelector(".popup_type_image");
+const popupImageContainer = popupImage.querySelector(".popup__container-image");
+const popupImageCrossButton = popupImageContainer.querySelector(".popup__cross-button");
+const popupImageFigure = popupImageContainer.querySelector(".popup__figure");
+const popupImageFigureImage = popupImageFigure.querySelector(".popup__image");
+const popupImageFigureDescription = popupImageFigure.querySelector(".popup__image-description");
 
-let profile = body.querySelector(".profile");
-let profileInfo = profile.querySelector(".profile__info");
-let profileEdit = profileInfo.querySelector(".profile__edit");
-let profileName = profileEdit.querySelector(".profile__name");
-let profileEditButton = profileEdit.querySelector(".profile__edit-button");
-let profileDescription = profileInfo.querySelector(".profile__description");
-let profileAddButton = profile.querySelector(".profile__add-button");
+const profile = body.querySelector(".profile");
+const profileInfo = profile.querySelector(".profile__info");
+const profileEdit = profileInfo.querySelector(".profile__edit");
+const profileName = profileEdit.querySelector(".profile__name");
+const profileEditButton = profileEdit.querySelector(".profile__edit-button");
+const profileDescription = profileInfo.querySelector(".profile__description");
+const profileAddButton = profile.querySelector(".profile__add-button");
 
-let elements = body.querySelector(".elements");
-let elementTemplate = elements.querySelector("#element-template").content;
+const elements = body.querySelector(".elements");
+const elementTemplate = elements.querySelector("#element-template").content;
 
 profileEditButton.addEventListener("click", onEditProfile);
 profileAddButton.addEventListener("click", onAddPlace);
@@ -176,10 +176,10 @@ function prependElement(element, src, title) {
   element.querySelector(".element__image").src = src;
   element.querySelector(".element__info").querySelector(".element__title").textContent = title;
 
-  let elementHeartButton = element.querySelector(".element__info").querySelector(".element__heart-button");
+  const elementHeartButton = element.querySelector(".element__info").querySelector(".element__heart-button");
   elementHeartButton.addEventListener("click", onLikePlace);
 
-  let elementDeleteButton = element.querySelector(".element__delete-button");
+  const elementDeleteButton = element.querySelector(".element__delete-button");
   elementDeleteButton.addEventListener("click", onDeletePlace);
 
   element.querySelector(".element__image").addEventListener("click", function() {
