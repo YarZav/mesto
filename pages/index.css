@@ -64,3 +64,7 @@
 @import url("../blocks/popup-form/__input/_type/popup-form__input_type_name.css");
 @import url("../blocks/popup-form/__input/_type/popup-form__input_type_description.css");
 @import url("../blocks/popup-form/__button/popup-form__button.css");
+@import url("../blocks/popup-form/__button/_disabled/popup-form__button_disabled.css");
+@import url("../blocks/popup-form/__input-error/popup-form__input-error.css");
+@import url("../blocks/popup-form/__input-error/_type/popup-form__input-error_type_name.css");
+@import url("../blocks/popup-form/__input-error/_type/popup-form__input-error_type_description.css");
