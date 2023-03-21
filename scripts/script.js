@@ -161,34 +161,9 @@ function setupPopupTexts(popup, name, descriptionElement) {
   getPopupErrorDescription(popup).textContent = "";
 }
 
-function updatePopupSubmitButton(popup) {
-  if (isPopupValid(popup)) {
-      getPopupSubmitButton(popup).classList.remove("popup-form__button_disabled");
-  } else {
-      getPopupSubmitButton(popup).classList.add("popup-form__button_disabled");
-  }
-}
-
 function addPopupListeners(popup) {
-  const crossButton = getPopupCrossButton(popup);
-
-  addPopupNameListener(popup);
-  addPopupDescriptionListener(popup);
-  addPopupCloseListeners(popup, crossButton);
-}
-
-function addPopupNameListener(popup) {
-  getPopupName(popup).addEventListener('input', function (event) {
-    getPopupErrorName(popup).textContent = event.target.validationMessage;
-    updatePopupSubmitButton(popup);
-  });
-}
-
-function addPopupDescriptionListener(popup) {
-  getPopupName(popup).addEventListener('input', function (event) {
-    getPopupErrorName(popup).textContent = event.target.validationMessage;
-    updatePopupSubmitButton(popup);
-  });
+  enableValidation(popup);
+  addPopupCloseListeners(popup, getPopupCrossButton(popup));
 }
 
 function addPopupCloseListeners(popup, crossButton) {
