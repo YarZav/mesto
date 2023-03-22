@@ -7,18 +7,14 @@ const popupProfile = body.querySelector(".popup_type_profile");
 const popupPlace = body.querySelector(".popup_type_place");
 
 const popupImage = body.querySelector(".popup_type_image");
-const popupImageContainer = popupImage.querySelector(".popup__container-image");
-const popupImageCrossButton = popupImageContainer.querySelector(".popup__cross-button");
-const popupImageFigure = popupImageContainer.querySelector(".popup__figure");
-const popupImageFigureImage = popupImageFigure.querySelector(".popup__image");
-const popupImageFigureDescription = popupImageFigure.querySelector(".popup__image-description");
+const popupImageCrossButton = popupImage.querySelector(".popup__cross-button");
+const popupImageFigureImage = popupImage.querySelector(".popup__image");
+const popupImageFigureDescription = popupImage.querySelector(".popup__image-description");
 
 const profile = body.querySelector(".profile");
-const profileInfo = profile.querySelector(".profile__info");
-const profileEdit = profileInfo.querySelector(".profile__edit");
-const profileName = profileEdit.querySelector(".profile__name");
-const profileEditButton = profileEdit.querySelector(".profile__edit-button");
-const profileDescription = profileInfo.querySelector(".profile__description");
+const profileName = profile.querySelector(".profile__name");
+const profileEditButton = profile.querySelector(".profile__edit-button");
+const profileDescription = profile.querySelector(".profile__description");
 const profileAddButton = profile.querySelector(".profile__add-button");
 
 const elementContainer = body.querySelector(".elements");
@@ -141,30 +137,23 @@ function createElement(src, title) {
   return element
 }
 
-// Popup
+// Popup init
 
 function setupPopup(popup, name = "", description = "") {
-  setupPopupDefaul(popup, name, description);
-
-  addPopupListeners(popup);
+  setupPopupDefault(popup, name, description);
+  addPopupCloseListeners(popup, getPopupCrossButton(popup));
   openPopup(popup);
 }
 
-function setupPopupDefaul(popup, name, descriptionElement) {
-  getPopupName(popup).classList.remove("popup__input_type_error");
-  getPopupDescription(popup).classList.remove("popup__input_type_error");
+function setupPopupDefault(popup, name, descriptionElement) {
   getPopupName(popup).value = name;
   getPopupDescription(popup).value = descriptionElement;
 
-  popup.querySelector(".popup__error_type_name").textContent = "";
-  popup.querySelector(".popup__error_type_description").textContent = "";
-
-  popup.querySelector(".popup__button").classList.remove("popup__button_disabled");
+  getPopupName(popup).dispatchEvent(new Event("input"));
+  getPopupDescription(popup).dispatchEvent(new Event("input"));
 }
 
-function addPopupListeners(popup) {
-  addPopupCloseListeners(popup, getPopupCrossButton(popup));
-}
+// Popup close events
 
 function addPopupCloseListeners(popup, crossButton) {
   addPopupOverlayListener(popup, crossButton);
@@ -201,6 +190,8 @@ function addPopupEscListener(crossButton) {
   };
 }
 
+// Popup open/close
+
 function openPopup(popup) {
   popup.classList.add("popup_opened");
 }
@@ -208,6 +199,8 @@ function openPopup(popup) {
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
 }
+
+// Popup elements
 
 function getPopupName(popup) {
   return popup.querySelector(".popup__input_type_name");
