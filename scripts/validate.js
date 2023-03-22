@@ -1,63 +1,56 @@
 // Public
 
-// enableValidation({
-//     formSelector: '.popup__form',
-//     inputSelector: '.popup__input',
-//     submitButtonSelector: '.popup__button',
-//     inactiveButtonClass: 'popup__button_disabled',
-//     inputErrorClass: 'popup__input_type_error',
-//     errorClass: 'popup__error_visible'
-// });
+enableValidation({
+    formSelector: '.popup__form',
+    inputSelector: '.popup__input',
+    submitButtonSelector: '.popup__button',
+    inactiveButtonClass: 'popup__button_disabled',
+    inputErrorClass: 'popup__input_type_error',
+    errorClass: 'popup__error_visible'
+});
 
-function enableValidation(popup) {
-    addPopupNameValidationListener(popup);
-    addPopupDescriptionValidationListener(popup);
-}
+function enableValidation(popupConfiguration) {
+    const popups = Array.from(document.querySelectorAll(popupConfiguration.formSelector));
 
-function isPopupNameValid(popup) {
-    return getPopupName(popup).validity.valid
-}
-
-function isPopupDescriptionValid(popup) {
-    return getPopupDescription(popup).validity.valid
-}
-
-function isPopupValid(popup) {
-    return isPopupNameValid(popup) && isPopupDescriptionValid(popup);
-}
-
-// Private
-
-function addPopupNameValidationListener(popup) {
-    getPopupName(popup).addEventListener('input', function (event) {
-        getPopupErrorName(popup).textContent = event.target.validationMessage;
-        updatePopupValid(popup);
-    });
-}
-  
-function addPopupDescriptionValidationListener(popup) {
-    getPopupDescription(popup).addEventListener('input', function (event) {
-        getPopupErrorDescription(popup).textContent = event.target.validationMessage;
-        updatePopupValid(popup);
+    popups.forEach((popup) => {
+        setupPopupListeners(popup, popupConfiguration);
     });
 }
 
-function updatePopupValid(popup) {
-    if (isPopupNameValid(popup)) {
-        getPopupName(popup).classList.remove("popup__input_type_error");
-    } else {
-        getPopupName(popup).classList.add("popup__input_type_error");
-    }
+function setupPopupListeners(popup, popupConfiguration) {
+    const inputs = Array.from(popup.querySelectorAll(popupConfiguration.inputSelector));
 
-    if (isPopupDescriptionValid(popup)) {
-        getPopupDescription(popup).classList.remove("popup__input_type_error");
-    } else {
-        getPopupDescription(popup).classList.add("popup__input_type_error");
-    }
+    inputs.forEach((input) => {
+        setupInputListener(popup, input, popupConfiguration);
+    });
+}
 
-    if (isPopupValid(popup)) {
-        getPopupSubmitButton(popup).classList.remove("popup__submit-button_disabled");
+function setupInputListener(popup, input, popupConfiguration) {
+    input.addEventListener('input', function (event) {
+        input.nextElementSibling.textContent = event.target.validationMessage;
+
+        if (input.validity.valid) {
+            input.classList.remove(popupConfiguration.inputErrorClass);
+            input.nextElementSibling.classList.remove(popupConfiguration.errorClass);
+        } else {
+            input.classList.add(popupConfiguration.inputErrorClass);
+            input.nextElementSibling.classList.add(popupConfiguration.errorClass);
+        }
+
+        updateSubmitButton(popup, popupConfiguration);
+    });
+}
+
+function updateSubmitButton(popup, popupConfiguration) {
+    const inputs = Array.from(popup.querySelectorAll(popupConfiguration.inputSelector));
+    const isInputsValid = inputs.map(input => input.validity.valid).every(valid => valid === true);
+    const button = popup.querySelector(popupConfiguration.submitButtonSelector);
+
+    if (isInputsValid) {
+        button.classList.remove(popupConfiguration.inactiveButtonClass);
+        button.removeAttribute("disabled");
     } else {
-        getPopupSubmitButton(popup).classList.add("popup__submit-button_disabled");
+        button.classList.add(popupConfiguration.inactiveButtonClass);
+        button.setAttribute("disabled", true);
     }
 }

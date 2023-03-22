@@ -68,12 +68,10 @@ profileAddButton.addEventListener("click", function (event) {
 getPopupContainer(popupProfile).addEventListener("submit", function (event) {
   event.preventDefault();
 
-  if (isPopupValid(popupProfile)) {
-    profileName.textContent = getPopupName(popupProfile).value;
-    profileDescription.textContent = getPopupDescription(popupProfile).value;
+  profileName.textContent = getPopupName(popupProfile).value;
+  profileDescription.textContent = getPopupDescription(popupProfile).value;
 
-    getPopupCrossButton(popupProfile).click();
-  }
+  getPopupCrossButton(popupProfile).click();
 });
 
 // Popup Place
@@ -81,14 +79,12 @@ getPopupContainer(popupProfile).addEventListener("submit", function (event) {
 getPopupContainer(popupPlace).addEventListener("submit", function (event) {
   event.preventDefault();
 
-  if (isPopupValid(popupPlace)) {
-    let src = getPopupDescription(popupPlace).value;
-    let name = getPopupName(popupPlace).value;
-    const element = createElement(src, name);
-    elementContainer.prepend(element);
+  let src = getPopupDescription(popupPlace).value;
+  let name = getPopupName(popupPlace).value;
+  const element = createElement(src, name);
+  elementContainer.prepend(element);
 
-    getPopupCrossButton(popupPlace).click();
-  }
+  getPopupCrossButton(popupPlace).click();
 });
 
 // Popup Image
@@ -149,20 +145,24 @@ function createElement(src, title) {
 
 function setupPopup(popup, name = "", description = "") {
   setupPopupTexts(popup, name, description);
-  updatePopupValid(popup);
+
   addPopupListeners(popup);
   openPopup(popup);
 }
 
 function setupPopupTexts(popup, name, descriptionElement) {
+  getPopupName(popup).classList.remove("popup__input_type_error");
+  getPopupDescription(popup).classList.remove("popup__input_type_error");
   getPopupName(popup).value = name;
   getPopupDescription(popup).value = descriptionElement;
-  getPopupErrorName(popup).textContent = "";
-  getPopupErrorDescription(popup).textContent = "";
+
+  popup.querySelector(".popup__error_type_name").textContent = "";
+  popup.querySelector(".popup__error_type_description").textContent = "";
+
+  popup.querySelector(".popup__button").classList.remove("popup__button_disabled");
 }
 
 function addPopupListeners(popup) {
-  enableValidation(popup);
   addPopupCloseListeners(popup, getPopupCrossButton(popup));
 }
 
@@ -217,20 +217,8 @@ function getPopupName(popup) {
   return getPopupContainer(popup).querySelector(".popup__input_type_name");
 }
 
-function getPopupErrorName(popup) {
-  return getPopupContainer(popup).querySelector(".popup__error_type_name");
-}
-
 function getPopupDescription(popup) {
   return getPopupContainer(popup).querySelector(".popup__input_type_description");
-}
-
-function getPopupErrorDescription(popup) {
-  return getPopupContainer(popup).querySelector(".popup__error_type_description");
-}
-
-function getPopupSubmitButton(popup) {
-  return getPopupContainer(popup).querySelector(".popup__submit-button");
 }
 
 function getPopupCrossButton(popup) {
