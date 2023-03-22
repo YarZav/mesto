@@ -65,7 +65,7 @@ profileAddButton.addEventListener("click", function (event) {
 
 // Popup profile
 
-getPopupContainer(popupProfile).addEventListener("submit", function (event) {
+popupProfile.addEventListener("submit", function (event) {
   event.preventDefault();
 
   profileName.textContent = getPopupName(popupProfile).value;
@@ -76,7 +76,7 @@ getPopupContainer(popupProfile).addEventListener("submit", function (event) {
 
 // Popup Place
 
-getPopupContainer(popupPlace).addEventListener("submit", function (event) {
+popupPlace.addEventListener("submit", function (event) {
   event.preventDefault();
 
   let src = getPopupDescription(popupPlace).value;
@@ -144,13 +144,13 @@ function createElement(src, title) {
 // Popup
 
 function setupPopup(popup, name = "", description = "") {
-  setupPopupTexts(popup, name, description);
+  setupPopupDefaul(popup, name, description);
 
   addPopupListeners(popup);
   openPopup(popup);
 }
 
-function setupPopupTexts(popup, name, descriptionElement) {
+function setupPopupDefaul(popup, name, descriptionElement) {
   getPopupName(popup).classList.remove("popup__input_type_error");
   getPopupDescription(popup).classList.remove("popup__input_type_error");
   getPopupName(popup).value = name;
@@ -209,18 +209,14 @@ function closePopup(popup) {
   popup.classList.remove("popup_opened");
 }
 
-function getPopupContainer(popup) {
-  return popup.querySelector(".popup__container");
-}
-
 function getPopupName(popup) {
-  return getPopupContainer(popup).querySelector(".popup__input_type_name");
+  return popup.querySelector(".popup__input_type_name");
 }
 
 function getPopupDescription(popup) {
-  return getPopupContainer(popup).querySelector(".popup__input_type_description");
+  return popup.querySelector(".popup__input_type_description");
 }
 
 function getPopupCrossButton(popup) {
-  return getPopupContainer(popup).querySelector(".popup__cross-button");
+  return popup.querySelector(".popup__cross-button");
 }
