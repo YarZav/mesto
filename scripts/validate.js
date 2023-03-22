@@ -56,8 +56,8 @@ function updatePopupValid(popup) {
     }
 
     if (isPopupValid(popup)) {
-        getPopupSubmitButton(popup).classList.remove("popup-form__button_disabled");
+        getPopupSubmitButton(popup).classList.remove("popup__submit-button_disabled");
     } else {
-        getPopupSubmitButton(popup).classList.add("popup-form__button_disabled");
+        getPopupSubmitButton(popup).classList.add("popup__submit-button_disabled");
     }
 }

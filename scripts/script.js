@@ -230,7 +230,7 @@ function getPopupErrorDescription(popup) {
 }
 
 function getPopupSubmitButton(popup) {
-  return getPopupContainer(popup).querySelector(".popup-form__button");
+  return getPopupContainer(popup).querySelector(".popup__submit-button");
 }
 
 function getPopupCrossButton(popup) {
