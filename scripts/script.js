@@ -149,7 +149,7 @@ function createElement(src, title) {
 
 function setupPopup(popup, name = "", description = "") {
   setupPopupTexts(popup, name, description);
-  updatePopupSubmitButton(popup);
+  updatePopupValid(popup);
   addPopupListeners(popup);
   openPopup(popup);
 }
@@ -214,19 +214,19 @@ function getPopupContainer(popup) {
 }
 
 function getPopupName(popup) {
-  return getPopupContainer(popup).querySelector(".popup-form__input_type_name");
+  return getPopupContainer(popup).querySelector(".popup__input_type_name");
 }
 
 function getPopupErrorName(popup) {
-  return getPopupContainer(popup).querySelector(".popup-form__input-error_type_name");
+  return getPopupContainer(popup).querySelector(".popup__error_type_name");
 }
 
 function getPopupDescription(popup) {
-  return getPopupContainer(popup).querySelector(".popup-form__input_type_description");
+  return getPopupContainer(popup).querySelector(".popup__input_type_description");
 }
 
 function getPopupErrorDescription(popup) {
-  return getPopupContainer(popup).querySelector(".popup-form__input-error_type_description");
+  return getPopupContainer(popup).querySelector(".popup__error_type_description");
 }
 
 function getPopupSubmitButton(popup) {
