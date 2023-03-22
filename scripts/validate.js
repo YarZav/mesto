@@ -44,15 +44,15 @@ function addPopupDescriptionValidationListener(popup) {
 
 function updatePopupValid(popup) {
     if (isPopupNameValid(popup)) {
-        getPopupName(popup).classList.remove("popup__input_error");
+        getPopupName(popup).classList.remove("popup__input_type_error");
     } else {
-        getPopupName(popup).classList.add("popup__input_error");
+        getPopupName(popup).classList.add("popup__input_type_error");
     }
 
     if (isPopupDescriptionValid(popup)) {
-        getPopupDescription(popup).classList.remove("popup__input_error");
+        getPopupDescription(popup).classList.remove("popup__input_type_error");
     } else {
-        getPopupDescription(popup).classList.add("popup__input_error");
+        getPopupDescription(popup).classList.add("popup__input_type_error");
     }
 
     if (isPopupValid(popup)) {
