@@ -7,7 +7,6 @@ const popupProfile = body.querySelector(".popup_type_profile");
 const popupPlace = body.querySelector(".popup_type_place");
 
 const popupImage = body.querySelector(".popup_type_image");
-const popupImageCrossButton = popupImage.querySelector(".popup__cross-button");
 const popupImageFigureImage = popupImage.querySelector(".popup__image");
 const popupImageFigureDescription = popupImage.querySelector(".popup__image-description");
 
@@ -49,13 +48,6 @@ const initialCards = [
     }
 ];
 
-// Setup
-
-addPopupCloseListeners(popupProfile, getPopupCrossButton(popupProfile));
-addPopupCloseListeners(popupPlace, getPopupCrossButton(popupPlace));
-addPopupCloseListeners(popupImage, popupImageCrossButton);
-addPopupEscListener();
-
 // Profile
 
 profileEditButton.addEventListener("click", function (event) {
@@ -88,12 +80,6 @@ popupPlace.addEventListener("submit", function (event) {
   elementContainer.prepend(element);
 
   getPopupCrossButton(popupPlace).click();
-});
-
-// Popup Image
-
-popupImageCrossButton.addEventListener("click", function () {
-  closePopup(popupImage)
 });
 
 // Element
@@ -160,26 +146,27 @@ function setupPopupDefault(popup, name, descriptionElement) {
 
 // Popup close events
 
-function addPopupCloseListeners(popup, crossButton) {
-  addPopupOverlayListener(popup, crossButton);
-  addCrossButtonListener(popup, crossButton);
-}
-
-function addPopupOverlayListener(popup, crossButton) {
-  popup.addEventListener("click", function (event) {
-    if (event.target !== event.currentTarget) return;
-    crossButton.click();
-  });
-}
-
-function addCrossButtonListener(popup, crossbutton) {
-  crossbutton.addEventListener('click', function (event) {
-    closePopup(popup)
-  });
-}
-
-function addPopupEscListener() {
+function addPopupCloseListeners(popup) {
+  popup.addEventListener("click", closeByOverlay);
+  popup.querySelector(".popup__cross-button").addEventListener('click', closeByCrossButton);
   document.addEventListener('keydown', closeByEscape);
+}
+
+function removePopupCloseListenres(popup) {
+  popup.removeEventListener('click', closeByOverlay);
+  popup.querySelector(".popup__cross-button").removeEventListener('click', closeByCrossButton);
+  document.removeEventListener('keydown', closeByEscape);
+}
+
+function closeByOverlay(event) {
+  if (event.target !== event.currentTarget) return;
+  const openedPopup = document.querySelector('.popup_opened');
+  closePopup(openedPopup);
+}
+
+function closeByCrossButton() {
+  const openedPopup = document.querySelector('.popup_opened');
+  closePopup(openedPopup);
 }
 
 function closeByEscape(event) {
@@ -193,10 +180,12 @@ function closeByEscape(event) {
 
 function openPopup(popup) {
   popup.classList.add("popup_opened");
+  addPopupCloseListeners(popup);
 }
 
 function closePopup(popup) {
   popup.classList.remove("popup_opened");
+  removePopupCloseListenres(popup);
 }
 
 // Popup elements
@@ -207,8 +196,4 @@ function getPopupName(popup) {
 
 function getPopupDescription(popup) {
   return popup.querySelector(".popup__input_type_description");
-}
-
-function getPopupCrossButton(popup) {
-  return popup.querySelector(".popup__cross-button");
 }
