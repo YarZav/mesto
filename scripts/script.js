@@ -49,6 +49,12 @@ const initialCards = [
     }
 ];
 
+// Setup
+
+addPopupCloseListeners(popupProfile, getPopupCrossButton(popupProfile));
+addPopupCloseListeners(popupPlace, getPopupCrossButton(popupPlace));
+addPopupCloseListeners(popupImage, popupImageCrossButton);
+
 // Profile
 
 profileEditButton.addEventListener("click", function (event) {
@@ -75,8 +81,8 @@ popupProfile.addEventListener("submit", function (event) {
 popupPlace.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  let src = getPopupDescription(popupPlace).value;
-  let name = getPopupName(popupPlace).value;
+  const src = getPopupDescription(popupPlace).value;
+  const name = getPopupName(popupPlace).value;
   const element = createElement(src, name);
   elementContainer.prepend(element);
 
@@ -103,7 +109,7 @@ function onDeletePlace(event) {
 
 function onShowImage(link, name) {
   openPopup(popupImage);
-  addPopupCloseListeners(popupImage, popupImageCrossButton);
+  addPopupEscAction(popupImageCrossButton);
 
   popupImageFigureImage.src = link;
   popupImageFigureImage.alt = name;
@@ -141,7 +147,7 @@ function createElement(src, title) {
 
 function setupPopup(popup, name = "", description = "") {
   setupPopupDefault(popup, name, description);
-  addPopupCloseListeners(popup, getPopupCrossButton(popup));
+  addPopupEscAction(getPopupCrossButton(popup));
   openPopup(popup);
 }
 
@@ -158,7 +164,6 @@ function setupPopupDefault(popup, name, descriptionElement) {
 function addPopupCloseListeners(popup, crossButton) {
   addPopupOverlayListener(popup, crossButton);
   addCrossButtonListener(popup, crossButton);
-  addPopupEscListener(crossButton);
 }
 
 function addPopupOverlayListener(popup, crossButton) {
@@ -174,7 +179,7 @@ function addCrossButtonListener(popup, crossbutton) {
   });
 }
 
-function addPopupEscListener(crossButton) {
+function addPopupEscAction(crossButton) {
   document.onkeydown = function(event) {
     event = event || window.event;
 
