@@ -54,6 +54,7 @@ const initialCards = [
 addPopupCloseListeners(popupProfile, getPopupCrossButton(popupProfile));
 addPopupCloseListeners(popupPlace, getPopupCrossButton(popupPlace));
 addPopupCloseListeners(popupImage, popupImageCrossButton);
+addPopupEscListener();
 
 // Profile
 
@@ -109,7 +110,6 @@ function onDeletePlace(event) {
 
 function onShowImage(link, name) {
   openPopup(popupImage);
-  addPopupEscAction(popupImageCrossButton);
 
   popupImageFigureImage.src = link;
   popupImageFigureImage.alt = name;
@@ -147,7 +147,6 @@ function createElement(src, title) {
 
 function setupPopup(popup, name = "", description = "") {
   setupPopupDefault(popup, name, description);
-  addPopupEscAction(getPopupCrossButton(popup));
   openPopup(popup);
 }
 
@@ -179,20 +178,15 @@ function addCrossButtonListener(popup, crossbutton) {
   });
 }
 
-function addPopupEscAction(crossButton) {
-  document.onkeydown = function(event) {
-    event = event || window.event;
+function addPopupEscListener() {
+  document.addEventListener('keydown', closeByEscape);
+}
 
-    var isEscape = false;
-    if ("key" in event) {
-      isEscape = (event.key === "Escape" || event.key === "Esc");
-    } else {
-      isEscape = (event.keyCode === 27);
-    }
-    if (isEscape) {
-      crossButton.click();
-    }
-  };
+function closeByEscape(event) {
+  if (event.key === "Escape" || event.key === "Esc") {
+    const openedPopup = document.querySelector('.popup_opened');
+    closePopup(openedPopup);
+  }
 }
 
 // Popup open/close
