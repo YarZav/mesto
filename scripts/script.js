@@ -1,3 +1,7 @@
+// Import
+
+import { Card } from "./Card.js";
+
 // UI elements
 
 const body = document.querySelector("body");
@@ -24,7 +28,6 @@ const profileDescription = profile.querySelector(".profile__description");
 const profileAddButton = profile.querySelector(".profile__add-button");
 
 const elementContainer = body.querySelector(".elements");
-const elementTemplate = elementContainer.querySelector("#element-template").content;
 
 // Mock data
 
@@ -93,8 +96,12 @@ popupProfile.addEventListener("submit", function (event) {
 popupPlace.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  const element = createElement(popupPlaceDescription.value, popupPlaceName.value);
-  elementContainer.prepend(element);
+  let cardData = { 
+    name: popupPlaceName.value,
+    link: popupPlaceDescription.value
+  }
+
+  setupElement(cardData);
 
   popupPlaceCrossButton.click();
 });
@@ -103,47 +110,24 @@ popupPlace.addEventListener("submit", function (event) {
 
 setupElements();
 
-function onLikePlace(event) {
-  event.target.classList.toggle("element__heart-button_active");
+function setupElements() {
+  initialCards.forEach(initialCard => setupElement(initialCard) );
 }
 
-function onDeletePlace(event) {
-  event.target.closest(".element").remove();
+function setupElement(data) {
+  const templateSelector = "#element-template";
+  const card = new Card(data, templateSelector, onOpenElementPopup);
+  const cardElement = card.getCardElement();
+
+  elementContainer.prepend(cardElement);
 }
 
-function onShowImage(link, name) {
+function onOpenElementPopup(cardData) {
   openPopup(popupImage, popupImageCrossButton);
 
-  popupImageFigureImage.src = link;
-  popupImageFigureImage.alt = name;
-  popupImageFigureDescription.textContent = name;
-}
-
-function setupElements() {
-  initialCards.forEach((initialCard) => {
-    const element = createElement(initialCard.link, initialCard.name);
-    elementContainer.prepend(element);
-  });
-}
-
-function createElement(src, title) {
-  const element = elementTemplate.querySelector(".element").cloneNode(true);
-
-  element.querySelector(".element__image").src = src;
-  element.querySelector(".element__image").alt = title;
-  element.querySelector(".element__info").querySelector(".element__title").textContent = title;
-
-  const elementHeartButton = element.querySelector(".element__info").querySelector(".element__heart-button");
-  elementHeartButton.addEventListener("click", onLikePlace);
-
-  const elementDeleteButton = element.querySelector(".element__delete-button");
-  elementDeleteButton.addEventListener("click", onDeletePlace);
-
-  element.querySelector(".element__image").addEventListener("click", function() {
-    onShowImage(src, title);
-  });
-
-  return element
+  popupImageFigureImage.src = cardData.link;
+  popupImageFigureImage.alt = cardData.name;
+  popupImageFigureDescription.textContent = cardData.name;
 }
 
 // Popup init
