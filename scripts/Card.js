@@ -47,11 +47,6 @@ class Card {
         event.target.closest(".element").remove();
     }
 
-    _onShowPopup(event) {
-        console.log(event);
-        // this._onOpenPopup(this._data);
-    }
-
     // Public
 
     getCardElement() {
