@@ -94,7 +94,8 @@ popupPlace.addEventListener("submit", function (event) {
     link: popupPlaceDescription.value
   }
 
-  setupElement(cardData);
+  let cardElement = setupElement(cardData);
+  prependElement(cardElement);
 
   popupPlaceCrossButton.click();
 });
@@ -104,14 +105,19 @@ popupPlace.addEventListener("submit", function (event) {
 setupElements();
 
 function setupElements() {
-  initialCards.forEach(initialCard => setupElement(initialCard) );
+  initialCards.forEach( (initialCard) => { 
+    let cardElement = setupElement(initialCard);
+    prependElement(cardElement);
+  });
 }
 
 function setupElement(data) {
   const templateSelector = "#element-template";
   const card = new Card(data, templateSelector, onOpenElementPopup);
-  const cardElement = card.getCardElement();
+  return card.getCardElement();
+}
 
+function prependElement(cardElement) {
   elementContainer.prepend(cardElement);
 }
 
