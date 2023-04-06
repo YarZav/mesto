@@ -15,8 +15,10 @@ class Card {
     }
 
     _setDataForCardElement() {
-        this._cardElement.querySelector(".element__image").src = this._data.link;
-        this._cardElement.querySelector(".element__image").alt = this._data.name;
+        this._cardElementImage = this._cardElement.querySelector(".element__image");
+        this._cardElementImage.src = this._data.link;
+        this._cardElementImage.alt = this._data.name;
+
         this._cardElement.querySelector(".element__info").querySelector(".element__title").textContent = this._data.name;
     }
 
@@ -31,7 +33,7 @@ class Card {
         this._cardElement.querySelector(".element__delete-button")
             .addEventListener("click", this._onDeletePlace);
 
-        this._cardElement.querySelector(".element__image")
+        this._cardElementImage
             .addEventListener("click", function () {
                 onOpenPopup(data);
             });
