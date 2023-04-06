@@ -122,11 +122,11 @@ function prependElement(cardElement) {
 }
 
 function onOpenElementPopup(cardData) {
-  openPopup(popupImage, popupImageCrossButton);
-
   popupImageFigureImage.src = cardData.link;
   popupImageFigureImage.alt = cardData.name;
   popupImageFigureDescription.textContent = cardData.name;
+
+  openPopup(popupImage, popupImageCrossButton);
 }
 
 // Popup init
