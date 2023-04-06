@@ -10,8 +10,8 @@ class Card {
     // Private
 
     _getCardElement() {
-        let cardTemplate = document.querySelector(this._templateSelector).content;
-        let cardElement = cardTemplate.querySelector(".element").cloneNode(true);
+        const cardTemplate = document.querySelector(this._templateSelector).content;
+        const cardElement = cardTemplate.querySelector(".element").cloneNode(true);
         return cardElement;
     }
 
@@ -54,7 +54,7 @@ class Card {
     // Public
 
     getCardElement() {
-        let cardElement = this._getCardElement();
+        const cardElement = this._getCardElement();
 
         this._setDataForCardElement(cardElement);
         this._setListenersForCardElement(cardElement);

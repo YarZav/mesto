@@ -117,7 +117,7 @@ popupProfile.addEventListener("submit", function (event) {
 popupPlace.addEventListener("submit", function (event) {
   event.preventDefault();
 
-  let cardData = { 
+  const cardData = { 
     name: popupPlaceName.value,
     link: popupPlaceDescription.value
   }
