@@ -23,9 +23,6 @@ class Card {
     }
 
     _setListenersForCardElement() {
-        // const data = this._data;
-        // const onOpenPopup = this._onOpenPopup;
-
         this._cardElement.querySelector(".element__info")
             .querySelector(".element__heart-button")
             .addEventListener("click", this._onLikePlace);
