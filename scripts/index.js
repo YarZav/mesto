@@ -154,11 +154,11 @@ function onOpenElementPopup(cardData) {
 // Popup init
 
 function setupPopup(popup, popupName, popupDescription, crossButton, name = "", description = "") {
-  setupPopupDefault(popup, popupName, popupDescription, name, description);
+  setupPopupDefault(popupName, popupDescription, name, description);
   openPopup(popup, crossButton);
 }
 
-function setupPopupDefault(popup, popupName, popupDescription, name, description) {
+function setupPopupDefault(popupName, popupDescription, name, description) {
   popupName.value = name;
   popupDescription.value = description;
 
