@@ -23,8 +23,8 @@ class Card {
     }
 
     _setListenersForCardElement() {
-        const data = this._data;
-        const onOpenPopup = this._onOpenPopup;
+        // const data = this._data;
+        // const onOpenPopup = this._onOpenPopup;
 
         this._cardElement.querySelector(".element__info")
             .querySelector(".element__heart-button")
@@ -34,8 +34,8 @@ class Card {
             .addEventListener("click", this._onDeletePlace);
 
         this._cardElementImage
-            .addEventListener("click", function () {
-                onOpenPopup(data);
+            .addEventListener("click", () => {
+                this._onOpenPopup(this._data);
             });
     }
 
