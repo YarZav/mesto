@@ -9,30 +9,29 @@ class Card {
 
     // Private
 
-    _getCardElement() {
+    _setupCardElement() {
         const cardTemplate = document.querySelector(this._templateSelector).content;
-        const cardElement = cardTemplate.querySelector(".element").cloneNode(true);
-        return cardElement;
+        this._cardElement = cardTemplate.querySelector(".element").cloneNode(true);
     }
 
-    _setDataForCardElement(cardElement) {
-        cardElement.querySelector(".element__image").src = this._data.link;
-        cardElement.querySelector(".element__image").alt = this._data.name;
-        cardElement.querySelector(".element__info").querySelector(".element__title").textContent = this._data.name;
+    _setDataForCardElement() {
+        this._cardElement.querySelector(".element__image").src = this._data.link;
+        this._cardElement.querySelector(".element__image").alt = this._data.name;
+        this._cardElement.querySelector(".element__info").querySelector(".element__title").textContent = this._data.name;
     }
 
-    _setListenersForCardElement(cardElement) {
+    _setListenersForCardElement() {
         const data = this._data;
         const onOpenPopup = this._onOpenPopup;
 
-        cardElement.querySelector(".element__info")
+        this._cardElement.querySelector(".element__info")
             .querySelector(".element__heart-button")
             .addEventListener("click", this._onLikePlace);
   
-        cardElement.querySelector(".element__delete-button")
+        this._cardElement.querySelector(".element__delete-button")
             .addEventListener("click", this._onDeletePlace);
 
-        cardElement.querySelector(".element__image")
+        this._cardElement.querySelector(".element__image")
             .addEventListener("click", function () {
                 onOpenPopup(data);
             });
@@ -54,12 +53,11 @@ class Card {
     // Public
 
     getCardElement() {
-        const cardElement = this._getCardElement();
+        this._setupCardElement();
+        this._setDataForCardElement();
+        this._setListenersForCardElement();
 
-        this._setDataForCardElement(cardElement);
-        this._setListenersForCardElement(cardElement);
-
-        return cardElement;
+        return this._cardElement;
     }
 }
 
