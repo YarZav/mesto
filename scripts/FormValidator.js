@@ -17,7 +17,7 @@ class FormValidator {
     _setupInputListener(form, input, formConfiguration) {
         const updateSubmitButton = this._updateSubmitButton;
 
-        input.addEventListener('input', function (event) {
+        input.addEventListener('keyup', function (event) {
             input.nextElementSibling.textContent = event.target.validationMessage;
     
             if (input.validity.valid) {
