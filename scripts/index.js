@@ -2,7 +2,7 @@
 
 import { Card } from "./Card.js";
 import { FormValidator } from "./FormValidator.js";
-import { initialCards } from "./Constants.js";
+import { initialCards } from "./сonstants.js";
 
 // UI elements
 
@@ -94,7 +94,7 @@ popupPlace.addEventListener("submit", function (event) {
     link: popupPlaceDescription.value
   }
 
-  let cardElement = setupElement(cardData);
+  const cardElement = setupElement(cardData);
   prependElement(cardElement);
 
   popupPlaceCrossButton.click();
@@ -106,7 +106,7 @@ setupElements();
 
 function setupElements() {
   initialCards.forEach( (initialCard) => { 
-    let cardElement = setupElement(initialCard);
+    const cardElement = setupElement(initialCard);
     prependElement(cardElement);
   });
 }
