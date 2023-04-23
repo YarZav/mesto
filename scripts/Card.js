@@ -1,10 +1,10 @@
 class Card {
     // Init
 
-    constructor(data, templateSelector, onOpenPopup) {
+    constructor(data, templateSelector, handleCardClick) {
         this._data = data;
         this._templateSelector = templateSelector;
-        this._onOpenPopup = onOpenPopup;
+        this._handleCardClick = handleCardClick;
     }
 
     // Private
@@ -32,7 +32,7 @@ class Card {
 
         this._cardElementImage
             .addEventListener("click", () => {
-                this._onOpenPopup(this._data);
+                this._handleCardClick(this._data);
             });
     }
 
