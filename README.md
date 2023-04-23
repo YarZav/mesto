@@ -13,6 +13,7 @@ https://yarzav.github.io/mesto/index.html
   - Медиа-запросы для различных размеров экранов
 - БЭМ
 - JavaScript
+- WEBPack
 
 ## TODO
 

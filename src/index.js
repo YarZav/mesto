@@ -1,12 +1,16 @@
 // Import
 
-import { Card } from "./Card.js";
-import { Section } from "./Section.js";
-import { FormValidator } from "./FormValidator.js";
-import { PopupWithForm }  from "./PopupWithForm.js";
-import { PopupWithImage }  from "./PopupWithImage.js";
-import { UserInfo }  from "./UserInfo.js";
-import { initialCards } from "./сonstants.js";
+// CSS
+import "./pages/index.css";
+
+// Modules
+import { Card } from "./scripts/Card.js";
+import { Section } from "./scripts/Section.js";
+import { FormValidator } from "./scripts/FormValidator.js";
+import { PopupWithForm }  from "./scripts/PopupWithForm.js";
+import { PopupWithImage }  from "./scripts/PopupWithImage.js";
+import { UserInfo }  from "./scripts/UserInfo.js";
+import { initialCards } from "./scripts/сonstants.js";
 
 // UI elements
 
@@ -19,6 +23,11 @@ const userInfo = new UserInfo(".profile__name", ".profile__description")
 const body = document.querySelector("body");
 const profileEditButton = body.querySelector(".profile__edit-button");
 const profileAddButton = body.querySelector(".profile__add-button");
+
+// Setup static HTML images
+
+body.querySelector(".header__logo").src = new URL("./images/header_logo.svg", import.meta.url);
+body.querySelector(".profile__avatar").src = new URL("./images/profile.jpg", import.meta.url);
 
 // Validation
 
