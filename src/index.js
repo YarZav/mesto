@@ -24,10 +24,16 @@ const body = document.querySelector("body");
 const profileEditButton = body.querySelector(".profile__edit-button");
 const profileAddButton = body.querySelector(".profile__add-button");
 
-// Setup static HTML images
+// Setup
 
 body.querySelector(".header__logo").src = new URL("./images/header_logo.svg", import.meta.url);
 body.querySelector(".profile__avatar").src = new URL("./images/profile.jpg", import.meta.url);
+
+section.renderElements();
+
+popupProfile.setEventListeners();
+popupPlace.setEventListeners();
+popupImage.setEventListeners();
 
 // Validation
 
@@ -54,7 +60,6 @@ function enableValidationForms() {
 profileEditButton.addEventListener("click", function () {
   const data = userInfo.getUserInfo();
   popupProfile.open(data);
-  popupProfile.setEventListeners();
 });
 
 function updateProfileData(data) {
@@ -64,18 +69,14 @@ function updateProfileData(data) {
 profileAddButton.addEventListener("click", function () {
   const data = { name: "", description: "" };
   popupPlace.open(data);
-  popupPlace.setEventListeners();
 });
 
 function addCardData(data) {
   const cardData = { name: data.name, link: data.description };
-  const cardElement = setupElement(cardData);
-  prependElement(cardElement);
+  setupElement(cardData);
 }
 
 // Element
-
-section.renderElements();
 
 function setupElement(cardData) {
   const templateSelector = "#element-template";
@@ -87,5 +88,4 @@ function setupElement(cardData) {
 
 function onOpenElement(cardData) {
   popupImage.open(cardData);
-  popupImage.setEventListeners();
 }

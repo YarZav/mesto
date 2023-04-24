@@ -7,15 +7,6 @@ class Popup {
 
     // Private
 
-    _removeListeners() {
-        const popup = document.querySelector(this._popupSelector);
-        const popupCrossButton = popup.querySelector(".popup__cross-button")
-
-        popup.removeEventListener('click', this._closeByOverlay);
-        popupCrossButton.removeEventListener('click', this._handleCrossButtonClose);
-        document.removeEventListener('keydown', this._handleEscClose);
-    }
-
     _handleEscClose(event) {
         if (event.key === "Escape" || event.key === "Esc") {
             this.close();
@@ -39,7 +30,6 @@ class Popup {
         const popup = document.querySelector(this._popupSelector);
 
         popup.classList.remove("popup_opened");
-        this._removeListeners();
     }
 
     setEventListeners() {
