@@ -5,17 +5,17 @@ class PopupWithImage extends Popup {
 
     constructor() {
         super(".popup_type_image");
+
+        this._popupImage = this._popup.querySelector(".popup__image");
+        this._popupImageDescription = this._popup.querySelector(".popup__image-description");
     }
 
     // Override public
 
     open(cardData) {
-        const popupImage = this._popup.querySelector(".popup__image");
-        const popupImageDescription = this._popup.querySelector(".popup__image-description");
-
-        popupImage.src = cardData.link;
-        popupImage.alt = cardData.name;
-        popupImageDescription.textContent = cardData.name;
+        this._popupImage.src = cardData.link;
+        this._popupImage.alt = cardData.name;
+        this._popupImageDescription.textContent = cardData.name;
 
         super.open();
     }
