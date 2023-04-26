@@ -33,6 +33,10 @@ class PopupWithForm extends Popup {
         this._popupCrossButton.click();
     }
 
+    _reset() {
+        this._inputList.forEach(input => input.value = "");
+    }
+
     // Overrride public
 
     open(data) {
@@ -45,7 +49,7 @@ class PopupWithForm extends Popup {
     }
 
     close() {
-        this._inputList.forEach(input => input.value = "")
+        this._reset();
 
         super.close();
 

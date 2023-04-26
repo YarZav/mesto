@@ -5,6 +5,8 @@ export default class Section {
     this._items = items;
     this._render = render;
     this._containerSelector = containerSelector;
+
+    this._container = document.querySelector(this._containerSelector);
   }
 
   // Public 
@@ -16,8 +18,7 @@ export default class Section {
   }
 
   addItem(item) {
-    const container = document.querySelector(this._containerSelector);
-    container.prepend(item);
+    this._container.prepend(item);
   }
 }
 
