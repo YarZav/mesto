@@ -24,8 +24,7 @@ class PopupWithForm extends Popup {
         const inputValues = this._getInputValues();
         this._submitHandler(inputValues);
 
-        const crossButton = this._popup.querySelector(".popup__cross-button");
-        crossButton.click();
+        this._popupCrossButton.click();
     }
 
     // Overrride public

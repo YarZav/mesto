@@ -5,6 +5,7 @@ class Popup {
         this._popupSelector = popupSelector;
 
         this._popup = document.querySelector(popupSelector);
+        this._popupCrossButton = this._popup.querySelector(".popup__cross-button")
     }
 
     // Private
@@ -31,11 +32,9 @@ class Popup {
     }
 
     setEventListeners() {
-        const popupCrossButton = this._popup.querySelector(".popup__cross-button")
-
         document.addEventListener('keydown', this._handleEscClose.bind(this));
         this._popup.addEventListener("click", this._handleOverlayClose.bind(this));
-        popupCrossButton.addEventListener('click', this.close.bind(this));
+        this._popupCrossButton.addEventListener('click', this.close.bind(this));
     }
 }
 
