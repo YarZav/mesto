@@ -10,9 +10,8 @@ class PopupWithImage extends Popup {
     // Override public
 
     open(cardData) {
-        const popup = document.querySelector(this._popupSelector);
-        const popupImage = popup.querySelector(".popup__image");
-        const popupImageDescription = popup.querySelector(".popup__image-description");
+        const popupImage = this._popup.querySelector(".popup__image");
+        const popupImageDescription = this._popup.querySelector(".popup__image-description");
 
         popupImage.src = cardData.link;
         popupImage.alt = cardData.name;

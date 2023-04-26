@@ -3,6 +3,8 @@ class Popup {
 
     constructor(popupSelector) {
         this._popupSelector = popupSelector;
+
+        this._popup = document.querySelector(popupSelector);
     }
 
     // Private
@@ -21,23 +23,18 @@ class Popup {
     // Public
 
     open() {
-        const popup = document.querySelector(this._popupSelector);
-
-        popup.classList.add("popup_opened");
+        this._popup.classList.add("popup_opened");
     }
 
     close() {
-        const popup = document.querySelector(this._popupSelector);
-
-        popup.classList.remove("popup_opened");
+        this._popup.classList.remove("popup_opened");
     }
 
     setEventListeners() {
-        const popup = document.querySelector(this._popupSelector);
-        const popupCrossButton = popup.querySelector(".popup__cross-button")
+        const popupCrossButton = this._popup.querySelector(".popup__cross-button")
 
         document.addEventListener('keydown', this._handleEscClose.bind(this));
-        popup.addEventListener("click", this._handleOverlayClose.bind(this));
+        this._popup.addEventListener("click", this._handleOverlayClose.bind(this));
         popupCrossButton.addEventListener('click', this.close.bind(this));
     }
 }
