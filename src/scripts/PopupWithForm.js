@@ -10,6 +10,8 @@ class PopupWithForm extends Popup {
 
         this._inputName = this._popup.querySelector(".popup__input_type_name");
         this._inputDescription = this._popup.querySelector(".popup__input_type_description");
+
+        this._handleSubmitBinder = this._handleSubmit.bind(this)
     }
 
     // Private
@@ -44,7 +46,7 @@ class PopupWithForm extends Popup {
     }
 
     setEventListeners() {
-        this._popup.addEventListener("submit", this._handleSubmit.bind(this));
+        this._popup.addEventListener("submit", this._handleSubmitBinder);
 
         super.setEventListeners();
     }

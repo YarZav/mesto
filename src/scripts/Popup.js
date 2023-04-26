@@ -5,7 +5,11 @@ class Popup {
         this._popupSelector = popupSelector;
 
         this._popup = document.querySelector(popupSelector);
-        this._popupCrossButton = this._popup.querySelector(".popup__cross-button")
+        this._popupCrossButton = this._popup.querySelector(".popup__cross-button");
+
+        this._handleEscCloseBinder = this._handleEscClose.bind(this);
+        this._handleOverlayCloseBinder = this._handleOverlayClose.bind(this);
+        this._handleCrossButtonCloseBinder = this.close.bind(this)
     }
 
     // Private
@@ -21,6 +25,12 @@ class Popup {
         this.close();
     }
 
+    _removeListeners() {
+        this._popup.removeEventListener('click', this._closeByOverlay);
+        this._popupCrossButton.removeEventListener('click', this._handleCrossButtonClose);
+        document.removeEventListener('keydown', this._handleEscClose);
+    }
+
     // Public
 
     open() {
@@ -28,13 +38,14 @@ class Popup {
     }
 
     close() {
+        this._removeListeners();
         this._popup.classList.remove("popup_opened");
     }
 
     setEventListeners() {
-        document.addEventListener('keydown', this._handleEscClose.bind(this));
-        this._popup.addEventListener("click", this._handleOverlayClose.bind(this));
-        this._popupCrossButton.addEventListener('click', this.close.bind(this));
+        document.addEventListener('keydown', this._handleEscCloseBinder);
+        this._popup.addEventListener("click", this._handleOverlayCloseBinder);
+        this._popupCrossButton.addEventListener('click', this._handleCrossButtonCloseBinder);
     }
 }
 
