@@ -39,10 +39,7 @@ class PopupWithForm extends Popup {
 
     // Overrride public
 
-    open(data) {
-        this._inputList[0].value = data.name;
-        this._inputList[1].value = data.occupation;
-
+    open() {
         super.open();
 
         this._popup.addEventListener("submit", this._handleSubmitBinder);
@@ -54,6 +51,12 @@ class PopupWithForm extends Popup {
         super.close();
 
         this._popup.removeEventListener('click', this._handleCrossButtonClose);
+    }
+
+    setInputValues(data) {
+        this._inputList.forEach((input) => {
+            input.value = data[input.name];
+          });
     }
 }
 

@@ -10,7 +10,7 @@ import { FormValidator } from "./scripts/FormValidator.js";
 import { PopupWithForm }  from "./scripts/PopupWithForm.js";
 import { PopupWithImage }  from "./scripts/PopupWithImage.js";
 import { UserInfo }  from "./scripts/UserInfo.js";
-import { initialCards } from "./scripts/сonstants.js";
+import { initialCards } from "./utils/сonstants.js";
 
 // UI elements
 
@@ -54,8 +54,9 @@ function enableValidationForms() {
 // Profile
 
 profileEditButton.addEventListener("click", function () {
-  const data = userInfo.getUserInfo();
-  popupProfile.open(data);
+  const inputValues = userInfo.getUserInfo();
+  popupProfile.open();
+  popupProfile.setInputValues(inputValues);
 });
 
 function updateProfileData(data) {
@@ -63,8 +64,9 @@ function updateProfileData(data) {
 }
 
 profileAddButton.addEventListener("click", function () {
-  const data = { name: "", occupation: "" };
-  popupPlace.open(data);
+  const inputValues = { name: "", occupation: "" };
+  popupPlace.open();
+  popupProfile.setInputValues(inputValues);
 });
 
 function addCardData(data) {
@@ -75,11 +77,16 @@ function addCardData(data) {
 // Element
 
 function setupElement(cardData) {
+  const cardElement = createCardElement();
+  section.addItem(cardElement);
+}
+
+function createCardElement() {
   const templateSelector = "#element-template";
   const card = new Card(cardData, templateSelector, onOpenElement);
   const cardElement = card.getCardElement();
 
-  section.addItem(cardElement);
+  return cardElement
 }
 
 function onOpenElement(cardData) {
