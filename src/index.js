@@ -31,10 +31,6 @@ body.querySelector(".profile__avatar").src = new URL("./images/profile.jpg", imp
 
 section.renderElements();
 
-popupProfile.setEventListeners();
-popupPlace.setEventListeners();
-popupImage.setEventListeners();
-
 // Validation
 
 enableValidationForms();

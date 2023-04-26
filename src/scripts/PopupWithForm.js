@@ -36,6 +36,8 @@ class PopupWithForm extends Popup {
         this._inputDescription.value = data.description;
 
         super.open();
+
+        this._popup.addEventListener("submit", this._handleSubmitBinder);
     }
 
     close() {
@@ -43,12 +45,8 @@ class PopupWithForm extends Popup {
         this._inputDescription.value = "";
 
         super.close();
-    }
 
-    setEventListeners() {
-        this._popup.addEventListener("submit", this._handleSubmitBinder);
-
-        super.setEventListeners();
+        this._popup.removeEventListener('click', this._handleCrossButtonClose);
     }
 }
 

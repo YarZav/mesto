@@ -26,15 +26,16 @@ class Popup {
     }
 
     _removeListeners() {
-        this._popup.removeEventListener('click', this._closeByOverlay);
+        document.removeEventListener('keydown', this._handleEscCloseBinder);
+        this._popup.removeEventListener('click', this._handleOverlayCloseBinder);
         this._popupCrossButton.removeEventListener('click', this._handleCrossButtonClose);
-        document.removeEventListener('keydown', this._handleEscClose);
     }
 
     // Public
 
     open() {
         this._popup.classList.add("popup_opened");
+        this.setEventListeners();
     }
 
     close() {
