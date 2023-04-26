@@ -2,6 +2,8 @@ class FormValidator {
     constructor(formConfiguration, form) {
         this._formConfiguration = formConfiguration;
         this._form = form;
+
+        this._submitButton = form.querySelector(formConfiguration.submitButtonSelector);
     }
 
     // Private
@@ -30,14 +32,13 @@ class FormValidator {
     
     _updateSubmitButton() {
         const isInputsValid = this._inputs.map(input => input.validity.valid).every(valid => valid === true);
-        const button = this._form.querySelector(this._formConfiguration.submitButtonSelector);
     
         if (isInputsValid) {
-            button.classList.remove(this._formConfiguration.inactiveButtonClass);
-            button.removeAttribute("disabled");
+            this._submitButton.classList.remove(this._formConfiguration.inactiveButtonClass);
+            this._submitButton.removeAttribute("disabled");
         } else {
-            button.classList.add(this._formConfiguration.inactiveButtonClass);
-            button.setAttribute("disabled", true);
+            this._submitButton.classList.add(this._formConfiguration.inactiveButtonClass);
+            this._submitButton.setAttribute("disabled", true);
         }
     }
 
