@@ -63,7 +63,7 @@ function updateProfileData(data) {
 }
 
 profileAddButton.addEventListener("click", function () {
-  const data = { name: "", description: "" };
+  const data = { name: "", occupation: "" };
   popupPlace.open(data);
 });
 

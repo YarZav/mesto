@@ -8,16 +8,20 @@ class PopupWithForm extends Popup {
 
         this._submitHandler = submitHandler;
 
-        this._inputName = this._popup.querySelector(".popup__input_type_name");
-        this._inputDescription = this._popup.querySelector(".popup__input_type_description");
-
+        this._inputList = this._popup.querySelectorAll(".popup__input");
         this._handleSubmitBinder = this._handleSubmit.bind(this)
     }
 
     // Private
 
     _getInputValues() {
-        return { name: this._inputName.value, description: this._inputDescription.value }
+        this._formValues = {};
+
+        this._inputList.forEach(input => {
+            this._formValues[input.name] = input.value;
+        });
+
+        return this._formValues;
     }
 
     _handleSubmit(event) {
@@ -32,8 +36,8 @@ class PopupWithForm extends Popup {
     // Overrride public
 
     open(data) {
-        this._inputName.value = data.name;
-        this._inputDescription.value = data.description;
+        this._inputList[0].value = data.name;
+        this._inputList[1].value = data.occupation;
 
         super.open();
 
@@ -41,8 +45,7 @@ class PopupWithForm extends Popup {
     }
 
     close() {
-        this._inputName.value = "";
-        this._inputDescription.value = "";
+        this._inputList.forEach(input => input.value = "")
 
         super.close();
 

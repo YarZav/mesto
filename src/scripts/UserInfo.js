@@ -1,23 +1,23 @@
 class UserInfo {
     // Init
 
-    constructor(nameSelector, descriptionSelector) {
+    constructor(nameSelector, occupationSelector) {
         this._nameSelector = nameSelector;
-        this._descriptionSelector = descriptionSelector;
+        this._occupationSelector = occupationSelector;
     }
 
     // Public
 
     getUserInfo() {
         const name = document.querySelector(this._nameSelector).textContent;
-        const description = document.querySelector(this._descriptionSelector).textContent;
+        const occupation = document.querySelector(this._occupationSelector).textContent;
 
-        return { name: name, description: description };
+        return { name: name, occupation: occupation };
     }
 
     setUserInfo(userInfo) {
         document.querySelector(this._nameSelector).textContent = userInfo.name;
-        document.querySelector(this._descriptionSelector).textContent = userInfo.description;
+        document.querySelector(this._occupationSelector).textContent = userInfo.occupation;
     }
 }
 
