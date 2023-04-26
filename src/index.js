@@ -77,11 +77,11 @@ function addCardData(data) {
 // Element
 
 function setupElement(cardData) {
-  const cardElement = createCardElement();
+  const cardElement = createCardElement(cardData);
   section.addItem(cardElement);
 }
 
-function createCardElement() {
+function createCardElement(cardData) {
   const templateSelector = "#element-template";
   const card = new Card(cardData, templateSelector, onOpenElement);
   const cardElement = card.getCardElement();
