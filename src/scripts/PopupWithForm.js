@@ -7,15 +7,15 @@ class PopupWithForm extends Popup {
         super(popupSelector);
 
         this._submitHandler = submitHandler;
+
+        this._inputName = this._popup.querySelector(".popup__input_type_name");
+        this._inputDescription = this._popup.querySelector(".popup__input_type_description");
     }
 
     // Private
 
     _getInputValues() {
-        const name = this._popup.querySelector(".popup__input_type_name").value;
-        const description = this._popup.querySelector(".popup__input_type_description").value;
-
-        return { name: name, description: description }
+        return { name: this._inputName.value, description: this._inputDescription.value }
     }
 
     _handleSubmit(event) {
@@ -30,15 +30,15 @@ class PopupWithForm extends Popup {
     // Overrride public
 
     open(data) {
-        this._popup.querySelector(".popup__input_type_name").value = data.name;
-        this._popup.querySelector(".popup__input_type_description").value = data.description;
+        this._inputName.value = data.name;
+        this._inputDescription.value = data.description;
 
         super.open();
     }
 
     close() {
-        this._popup.querySelector(".popup__input_type_name").value = "";
-        this._popup.querySelector(".popup__input_type_description").value = "";
+        this._inputName.value = "";
+        this._inputDescription.value = "";
 
         super.close();
     }
