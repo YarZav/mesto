@@ -70,7 +70,7 @@ profileAddButton.addEventListener("click", function () {
 });
 
 function addCardData(data) {
-  const cardData = { name: data.name, link: data.description };
+  const cardData = { name: data.name, link: data.occupation };
   setupElement(cardData);
 }
 
