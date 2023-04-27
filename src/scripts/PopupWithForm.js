@@ -43,6 +43,10 @@ class PopupWithForm extends Popup {
         super.open();
 
         this._popup.addEventListener("submit", this._handleSubmitBinder);
+
+        this._inputList.forEach((input) => {
+            input.dispatchEvent(new Event('keyup'));
+        });
     }
 
     close() {
@@ -56,7 +60,7 @@ class PopupWithForm extends Popup {
     setInputValues(data) {
         this._inputList.forEach((input) => {
             input.value = data[input.name];
-          });
+        });
     }
 }
 

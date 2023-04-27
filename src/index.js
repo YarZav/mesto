@@ -55,8 +55,8 @@ function enableValidationForms() {
 
 profileEditButton.addEventListener("click", function () {
   const inputValues = userInfo.getUserInfo();
-  popupProfile.open();
   popupProfile.setInputValues(inputValues);
+  popupProfile.open();
 });
 
 function updateProfileData(data) {
@@ -65,8 +65,8 @@ function updateProfileData(data) {
 
 profileAddButton.addEventListener("click", function () {
   const inputValues = { name: "", occupation: "" };
-  popupPlace.open();
   popupProfile.setInputValues(inputValues);
+  popupPlace.open();
 });
 
 function addCardData(data) {
