@@ -76,3 +76,6 @@
 @import url("../blocks/popup/__error/_type/popup__error_type_name.css");
 @import url("../blocks/popup/__error/_type/popup__error_type_description.css");
 @import url("../blocks/popup/__error/_visible/popup__error_visible.css");
+
+/* Loader */
+@import url("../blocks/loader/loader.css");

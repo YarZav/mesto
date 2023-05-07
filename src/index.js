@@ -33,7 +33,7 @@ const profileAddButton = body.querySelector(".profile__add-button");
 body.querySelector(".header__logo").src = new URL("./images/header_logo.svg", import.meta.url);
 body.querySelector(".profile__avatar").src = new URL("./images/profile.jpg", import.meta.url);
 
-// section.renderElements();
+section.renderElements();
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-42',
