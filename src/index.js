@@ -12,6 +12,10 @@ import { PopupWithImage }  from "./scripts/PopupWithImage.js";
 import { UserInfo }  from "./scripts/UserInfo.js";
 import { initialCards } from "./utils/сonstants.js";
 
+// API
+
+import { Api } from "./scripts/Api";
+
 // UI elements
 
 const section = new Section(initialCards, setupElement, ".elements")
@@ -29,7 +33,23 @@ const profileAddButton = body.querySelector(".profile__add-button");
 body.querySelector(".header__logo").src = new URL("./images/header_logo.svg", import.meta.url);
 body.querySelector(".profile__avatar").src = new URL("./images/profile.jpg", import.meta.url);
 
-section.renderElements();
+// section.renderElements();
+
+const api = new Api({
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-42',
+  headers: {
+    authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6',
+    'Content-Type': 'application/json'
+  }
+});
+
+api.getInitialCards()
+  .then(res => {
+    console.log(res);
+  })
+  .catch(err => {
+    console.log(err);
+  });
 
 // Validation
 
