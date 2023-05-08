@@ -148,9 +148,8 @@ profileAddButton.addEventListener("click", function () {
 function addCardData(data) {
   startElementsLoading();
   api.addCard(data.name, data.occupation)
-    .then(() => {
-      const cardData = { name: data.name, link: data.occupation };
-      setupElement(cardData);
+    .then((result) => {
+      setupElement(result);
     })
     .catch(error => {
       console.log(error);

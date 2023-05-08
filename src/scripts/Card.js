@@ -19,6 +19,9 @@ class Card {
         this._cardElementImage.src = this._data.link;
         this._cardElementImage.alt = this._data.name;
 
+        this._cardElementLikeCount = this._cardElement.querySelector(".element__like-count");
+        this._cardElementLikeCount.textContent = this._data.likes.length;
+
         this._cardElement.querySelector(".element__info").querySelector(".element__title").textContent = this._data.name;
     }
 
