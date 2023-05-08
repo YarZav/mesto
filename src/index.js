@@ -7,9 +7,19 @@ import "./pages/index.css";
 import { Card } from "./scripts/Card.js";
 import { Section } from "./scripts/Section.js";
 import { FormValidator } from "./scripts/FormValidator.js";
-import { PopupWithForm }  from "./scripts/PopupWithForm.js";
-import { PopupWithImage }  from "./scripts/PopupWithImage.js";
-import { UserInfo }  from "./scripts/UserInfo.js";
+import { PopupWithForm } from "./scripts/PopupWithForm.js";
+import { PopupWithImage } from "./scripts/PopupWithImage.js";
+import { UserInfo } from "./scripts/UserInfo.js";
+import { headerLogo,
+  profileAvatar, 
+  profileInfo, 
+  profileName, 
+  profileDescription, 
+  profileEditButton,
+  profileAddButton,
+  profileLoader,
+  elementsLoader
+} from "./scripts/constants.js"
 
 // API
 
@@ -17,27 +27,17 @@ import { Api } from "./scripts/Api";
 
 // UI elements
 
-const section = new Section(setupElement, ".elements")
+const section = new Section(setupElement, ".elements");
+
 const popupProfile = new PopupWithForm(".popup_type_profile", updateProfileData);
 const popupPlace = new PopupWithForm(".popup_type_place", addCardData);
 const popupImage = new PopupWithImage();
-const userInfo = new UserInfo(".profile__name", ".profile__description")
 
-const body = document.querySelector("body");
-const profileAvatar = body.querySelector(".profile__avatar");
-const profileInfo = body.querySelector(".profile__info");
-const profileName = profileInfo.querySelector(".profile__name");
-const profileDescription = profileInfo.querySelector(".profile__description");
-const profileEditButton = body.querySelector(".profile__edit-button");
-const profileAddButton = body.querySelector(".profile__add-button");
-const profileLoader = body.querySelector(".profile").querySelector(".loader");
-
-const elements = body.querySelector(".elements");
-const elementsLoader = elements.querySelector(".loader");
+const userInfo = new UserInfo(".profile__name", ".profile__description");
 
 // Setup UI
 
-body.querySelector(".header__logo").src = new URL("./images/header_logo.svg", import.meta.url);
+headerLogo.src = new URL("./images/header_logo.svg", import.meta.url);
 
 // API
 
@@ -49,12 +49,11 @@ const api = new Api({
   }
 });
 
-startProfileLoading();
-startElementsLoading();
-
 fetchProfileInfo();
 
 function fetchProfileInfo() {
+  setProfileLoading(true);
+
   api.getProfilInfo()
   .then(result => {
     userInfo.setUserInfo(result);
@@ -67,12 +66,14 @@ function fetchProfileInfo() {
     console.log(error);
   })
   .finally(() => {
-    stopProfileLoading();
+    setProfileLoading(false);
     fetchInitialCards(); 
   });
 }
 
 function fetchInitialCards() {
+  setElementsLoading(true);
+
   api.getInitialCards()
   .then(result => {
     section.renderElements(result);
@@ -81,30 +82,19 @@ function fetchInitialCards() {
     console.log(error);
   })
   .finally(() => {
-    stopElementsLoading();
+    setElementsLoading(false);
   });
 }
 
-function startProfileLoading() {
-  profileLoader.style.display = "inline-block";
-  profileAvatar.style.display = "none";
-  profileInfo.style.display = "none";
-  profileAddButton.style.display = "none";  
+function setProfileLoading(isLoading) {
+  profileLoader.style.display = isLoading ? "inline-block" : "none";
+  profileAvatar.style.display = isLoading ? "none" : "block";
+  profileInfo.style.display = isLoading ? "none" : "block";
+  profileAddButton.style.display = isLoading ? "none" : "block";
 }
 
-function stopProfileLoading() {
-  profileLoader.style.display = "none";
-  profileAvatar.style.display = "block";
-  profileInfo.style.display = "block";
-  profileAddButton.style.display = "block";
-}
-
-function startElementsLoading() {
-  elementsLoader.style.display = "inline-block";
-}
-
-function stopElementsLoading() {
-  elementsLoader.style.display = "none";
+function setElementsLoading(isLoading) {
+  elementsLoader.style.display = isLoading ? "inline-block" : "none";
 }
 
 // Validation
