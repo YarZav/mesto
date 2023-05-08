@@ -12,31 +12,29 @@ class Card {
     _setupCardElement() {
         const cardTemplate = document.querySelector(this._templateSelector).content;
         this._cardElement = cardTemplate.querySelector(".element").cloneNode(true);
+        this._cardElementImage = this._cardElement.querySelector(".element__image");
+        this._cardElementLikeCount = this._cardElement.querySelector(".element__like-count");
+        this._cardElementInfo = this._cardElement.querySelector(".element__info");
+        this._cardElementTitle = this._cardElementInfo.querySelector(".element__title");
+        this._cardElementHeartButton = this._cardElementInfo.querySelector(".element__heart-button");
+        this._cardElementDeleteButton =  this._cardElement.querySelector(".element__delete-button");
     }
 
     _setDataForCardElement() {
-        this._cardElementImage = this._cardElement.querySelector(".element__image");
         this._cardElementImage.src = this._data.link;
         this._cardElementImage.alt = this._data.name;
-
-        this._cardElementLikeCount = this._cardElement.querySelector(".element__like-count");
         this._cardElementLikeCount.textContent = this._data.likes.length;
-
-        this._cardElement.querySelector(".element__info").querySelector(".element__title").textContent = this._data.name;
+        this._cardElementTitle.textContent = this._data.name;
     }
 
     _setListenersForCardElement() {
-        this._cardElement.querySelector(".element__info")
-            .querySelector(".element__heart-button")
-            .addEventListener("click", this._onLikePlace);
+        this._cardElementHeartButton.addEventListener("click", this._onLikePlace);
   
-        this._cardElement.querySelector(".element__delete-button")
-            .addEventListener("click", this._onDeletePlace);
+        this._cardElementDeleteButton.addEventListener("click", this._onDeletePlace);
 
-        this._cardElementImage
-            .addEventListener("click", () => {
-                this._handleCardClick(this._data);
-            });
+        this._cardElementImage.addEventListener("click", () => {
+            this._handleCardClick(this._data);
+        });
     }
 
     _onLikePlace(event) {
