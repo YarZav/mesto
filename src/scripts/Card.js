@@ -1,8 +1,9 @@
 class Card {
     // Init
 
-    constructor(data, templateSelector, handleCardClick) {
-        this._data = data;
+    constructor(cardData, userData, templateSelector, handleCardClick) {
+        this._cardData = cardData;
+        this._userData = userData;
         this._templateSelector = templateSelector;
         this._handleCardClick = handleCardClick;
     }
@@ -21,10 +22,12 @@ class Card {
     }
 
     _setDataForCardElement() {
-        this._cardElementImage.src = this._data.link;
-        this._cardElementImage.alt = this._data.name;
-        this._cardElementLikeCount.textContent = this._data.likes.length;
-        this._cardElementTitle.textContent = this._data.name;
+        const isDeleteButtonShown = this._cardData.owner._id === this._userData._id;
+        this._cardElementImage.src = this._cardData.link;
+        this._cardElementImage.alt = this._cardData.name;
+        this._cardElementLikeCount.textContent = this._cardData.likes.length;
+        this._cardElementTitle.textContent = this._cardData.name;
+        this._cardElementDeleteButton.style.display = isDeleteButtonShown ? "block" : "none";
     }
 
     _setListenersForCardElement() {
@@ -33,7 +36,7 @@ class Card {
         this._cardElementDeleteButton.addEventListener("click", this._onDeletePlace);
 
         this._cardElementImage.addEventListener("click", () => {
-            this._handleCardClick(this._data);
+            this._handleCardClick(this._cardData);
         });
     }
 

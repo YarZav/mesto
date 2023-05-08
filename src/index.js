@@ -50,8 +50,15 @@ const api = new Api({
 });
 
 startProfileLoading();
-api.getProfilInfo()
+startElementsLoading();
+
+fetchProfileInfo();
+
+function fetchProfileInfo() {
+  api.getProfilInfo()
   .then(result => {
+    userInfo.setUserInfo(result);
+
     profileAvatar.src = new URL(result.avatar, import.meta.url);
     profileName.textContent = result.name;
     profileDescription.textContent = result.about;
@@ -60,8 +67,23 @@ api.getProfilInfo()
     console.log(error);
   })
   .finally(() => {
-    stopProfileLoading();   
+    stopProfileLoading();
+    fetchInitialCards(); 
   });
+}
+
+function fetchInitialCards() {
+  api.getInitialCards()
+  .then(result => {
+    section.renderElements(result);
+  })
+  .catch(error => {
+    console.log(error);
+  })
+  .finally(() => {
+    stopElementsLoading();
+  });
+}
 
 function startProfileLoading() {
   profileLoader.style.display = "inline-block";
@@ -76,18 +98,6 @@ function stopProfileLoading() {
   profileInfo.style.display = "block";
   profileAddButton.style.display = "block";
 }
-
-startElementsLoading();
-api.getInitialCards()
-  .then(result => {
-    section.renderElements(result);
-  })
-  .catch(error => {
-    console.log(error);
-  })
-  .finally(() => {
-    stopElementsLoading();
-  });
 
 function startElementsLoading() {
   elementsLoader.style.display = "inline-block";
@@ -168,7 +178,8 @@ function setupElement(cardData) {
 
 function createCardElement(cardData) {
   const templateSelector = "#element-template";
-  const card = new Card(cardData, templateSelector, onOpenElement);
+  const userData = userInfo.getUserInfo();
+  const card = new Card(cardData, userData, templateSelector, onOpenElement);
   const cardElement = card.getCardElement();
 
   return cardElement

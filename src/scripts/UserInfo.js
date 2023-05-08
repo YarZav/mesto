@@ -4,6 +4,10 @@ class UserInfo {
     constructor(nameSelector, occupationSelector) {
         this._nameSelector = nameSelector;
         this._occupationSelector = occupationSelector;
+
+        this._name = document.querySelector(this._nameSelector);
+        this._occupation = document.querySelector(this._occupationSelector);
+
     }
 
     // Public
