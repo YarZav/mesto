@@ -128,7 +128,6 @@ profileEditButton.addEventListener("click", function () {
 });
 
 function updateProfileData(data) {
-  setProfileLoading(true);
   api.setProfileInfo(data.name, data.occupation)
     .then(() => {
       userInfo.setUserInfo(data);
@@ -136,9 +135,6 @@ function updateProfileData(data) {
     .catch(error => {
       console.log(error);
     })
-    .finally(() => {
-      setProfileLoading(false)
-    }); 
 }
 
 profileAddButton.addEventListener("click", function () {
