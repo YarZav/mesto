@@ -10,7 +10,6 @@ import { FormValidator } from "./scripts/FormValidator.js";
 import { PopupWithForm }  from "./scripts/PopupWithForm.js";
 import { PopupWithImage }  from "./scripts/PopupWithImage.js";
 import { UserInfo }  from "./scripts/UserInfo.js";
-import { initialCards } from "./utils/сonstants.js";
 
 // API
 
@@ -18,38 +17,68 @@ import { Api } from "./scripts/Api";
 
 // UI elements
 
-const section = new Section(initialCards, setupElement, ".elements")
+const section = new Section(setupElement, ".elements")
 const popupProfile = new PopupWithForm(".popup_type_profile", updateProfileData);
 const popupPlace = new PopupWithForm(".popup_type_place", addCardData);
 const popupImage = new PopupWithImage();
 const userInfo = new UserInfo(".profile__name", ".profile__description")
 
 const body = document.querySelector("body");
+const profileAvatar = body.querySelector(".profile__avatar");
+const profileInfo = body.querySelector(".profile__info");
+const profileName = profileInfo.querySelector(".profile__name");
+const profileDescription = profileInfo.querySelector(".profile__description");
 const profileEditButton = body.querySelector(".profile__edit-button");
 const profileAddButton = body.querySelector(".profile__add-button");
+const profileLoader = body.querySelector(".profile").querySelector(".loader");
 
-// Setup
+const elements = body.querySelector(".elements");
+const elementsLoader = elements.querySelector(".loader");
+
+// Setup UI
 
 body.querySelector(".header__logo").src = new URL("./images/header_logo.svg", import.meta.url);
-body.querySelector(".profile__avatar").src = new URL("./images/profile.jpg", import.meta.url);
 
-section.renderElements();
+// API
 
 const api = new Api({
-  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-42',
+  baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-65',
   headers: {
-    authorization: 'c56e30dc-2883-4270-a59e-b2f7bae969c6',
+    authorization: 'e4e7d31e-adbb-40d6-b9b1-467496d1a1d0',
     'Content-Type': 'application/json'
   }
 });
 
-api.getInitialCards()
-  .then(res => {
-    console.log(res);
+profileAvatar.style.display = "none";
+profileInfo.style.display = "none";
+profileAddButton.style.display = "none";
+api.getProfilInfo()
+  .then(result => {
+    profileAvatar.src = new URL(result.avatar, import.meta.url);
+    profileName.textContent = result.name;
+    profileDescription.textContent = result.about;
   })
-  .catch(err => {
-    console.log(err);
+  .catch(error => {
+    console.log(error);
+  })
+  .finally(() => {
+    profileLoader.style.display = "none";
+    profileAvatar.style.display = "block";
+    profileInfo.style.display = "block";
+    profileAddButton.style.display = "block";    
   });
+
+api.getInitialCards()
+  .then(result => {
+    section.renderElements(result);
+  })
+  .catch(error => {
+    console.log(error);
+  })
+  .finally(() => {
+    elementsLoader.style.display = "none";
+  });
+
 
 // Validation
 

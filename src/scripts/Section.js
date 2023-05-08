@@ -1,8 +1,7 @@
 export default class Section {
   // Init
 
-  constructor(items, render, containerSelector) {
-    this._items = items;
+  constructor(render, containerSelector) {
     this._render = render;
     this._containerSelector = containerSelector;
 
@@ -11,8 +10,8 @@ export default class Section {
 
   // Public 
 
-  renderElements() {
-    this._items.forEach((item) => {
+  renderElements(items) {
+    items.forEach((item) => {
       this._render(item);
     });
   }
