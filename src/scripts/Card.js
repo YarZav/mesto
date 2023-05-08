@@ -1,11 +1,12 @@
 class Card {
     // Init
 
-    constructor(cardData, userData, templateSelector, handleCardClick) {
+    constructor(cardData, userData, templateSelector, handleCardClick, handleCardDelete) {
         this._cardData = cardData;
         this._userData = userData;
         this._templateSelector = templateSelector;
         this._handleCardClick = handleCardClick;
+        this._handleCardDelete = handleCardDelete;
     }
 
     // Private
@@ -33,7 +34,7 @@ class Card {
     _setListenersForCardElement() {
         this._cardElementHeartButton.addEventListener("click", this._onLikePlace);
   
-        this._cardElementDeleteButton.addEventListener("click", this._onDeletePlace);
+        this._cardElementDeleteButton.addEventListener("click", this._onDeletePlace.bind(this));
 
         this._cardElementImage.addEventListener("click", () => {
             this._handleCardClick(this._cardData);
@@ -44,8 +45,8 @@ class Card {
         event.target.classList.toggle("element__heart-button_active");
     }
 
-    _onDeletePlace(event) {
-        event.target.closest(".element").remove();
+    _onDeletePlace() {
+        this._handleCardDelete(this._cardData, this._cardElement);
     }
 
     // Public

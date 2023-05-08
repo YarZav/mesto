@@ -9,6 +9,7 @@ import { Section } from "./scripts/Section.js";
 import { FormValidator } from "./scripts/FormValidator.js";
 import { PopupWithForm } from "./scripts/PopupWithForm.js";
 import { PopupWithImage } from "./scripts/PopupWithImage.js";
+import { PopupWithConfirmation } from "./scripts/PopupWithConfirmation.js";
 import { UserInfo } from "./scripts/UserInfo.js";
 import { headerLogo,
   profileAvatar, 
@@ -30,8 +31,9 @@ import { Api } from "./scripts/Api";
 const section = new Section(setupElement, ".elements");
 
 const popupProfile = new PopupWithForm(".popup_type_profile", updateProfileData);
-const popupPlace = new PopupWithForm(".popup_type_place", addCardData);
+const popupPlace = new PopupWithForm(".popup_type_place", addCard);
 const popupImage = new PopupWithImage();
+const popupDeletePlace = new PopupWithConfirmation(".popup_type_delete-place", deleteCard);
 
 const userInfo = new UserInfo(".profile__name", ".profile__description");
 
@@ -145,8 +147,7 @@ profileAddButton.addEventListener("click", function () {
   popupPlace.open();
 });
 
-function addCardData(data) {
-  startElementsLoading();
+function addCard(data) {
   api.addCard(data.name, data.occupation)
     .then((result) => {
       setupElement(result);
@@ -154,9 +155,16 @@ function addCardData(data) {
     .catch(error => {
       console.log(error);
     })
-    .finally(() => {
-      stopElementsLoading();
-    });
+}
+
+function deleteCard(cardData, cardElement) {
+  api.deleteCard(cardData._id)
+    .then((result) => {
+      cardElement.remove();
+    })
+    .catch(error => {
+      console.log(error);
+    })
 }
 
 // Element
@@ -169,7 +177,7 @@ function setupElement(cardData) {
 function createCardElement(cardData) {
   const templateSelector = "#element-template";
   const userData = userInfo.getUserInfo();
-  const card = new Card(cardData, userData, templateSelector, onOpenElement);
+  const card = new Card(cardData, userData, templateSelector, onOpenElement, onDeleteElement);
   const cardElement = card.getCardElement();
 
   return cardElement
@@ -177,4 +185,8 @@ function createCardElement(cardData) {
 
 function onOpenElement(cardData) {
   popupImage.open(cardData);
+}
+
+function onDeleteElement(cardData, cardElement) {
+  popupDeletePlace.open(cardData, cardElement);
 }
