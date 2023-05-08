@@ -73,6 +73,10 @@ class Api {
     setCardLike(cardId) {
         return this._makeRequest("PUT", `/cards/${cardId}/likes`);
     }
+
+    deleteCardLike(cardId) {
+        return this._makeRequest("DELETE", `/cards/${cardId}/likes`);
+    }
 }
 
 export { Api }

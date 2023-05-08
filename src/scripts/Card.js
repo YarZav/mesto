@@ -1,12 +1,13 @@
 class Card {
     // Init
 
-    constructor(cardData, userData, templateSelector, handleCardClick, handleCardDelete) {
+    constructor(cardData, userData, templateSelector, handleCardClick, handleDeleteClick, handleLikeClick) {
         this._cardData = cardData;
         this._userData = userData;
         this._templateSelector = templateSelector;
         this._handleCardClick = handleCardClick;
-        this._handleCardDelete = handleCardDelete;
+        this._handleDeleteClick = handleDeleteClick;
+        this._handleLikeClick = handleLikeClick;
     }
 
     // Private
@@ -24,15 +25,20 @@ class Card {
 
     _setDataForCardElement() {
         const isDeleteButtonShown = this._cardData.owner._id === this._userData._id;
+        const isLiked = this._cardData.likes.filter(like => like._id === this._userData._id).length > 0;
+
         this._cardElementImage.src = this._cardData.link;
         this._cardElementImage.alt = this._cardData.name;
         this._cardElementLikeCount.textContent = this._cardData.likes.length;
         this._cardElementTitle.textContent = this._cardData.name;
         this._cardElementDeleteButton.style.display = isDeleteButtonShown ? "block" : "none";
+        if (isLiked) {
+            this._cardElementHeartButton.classList.add("element__heart-button_active");
+        }
     }
 
     _setListenersForCardElement() {
-        this._cardElementHeartButton.addEventListener("click", this._onLikePlace);
+        this._cardElementHeartButton.addEventListener("click", this._onLikePlace.bind(this));
   
         this._cardElementDeleteButton.addEventListener("click", this._onDeletePlace.bind(this));
 
@@ -41,12 +47,12 @@ class Card {
         });
     }
 
-    _onLikePlace(event) {
-        event.target.classList.toggle("element__heart-button_active");
+    _onLikePlace() {
+        this._handleLikeClick(this._cardData, this._cardElement);
     }
 
     _onDeletePlace() {
-        this._handleCardDelete(this._cardData, this._cardElement);
+        this._handleDeleteClick(this._cardData, this._cardElement);
     }
 
     // Public

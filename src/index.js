@@ -173,7 +173,7 @@ function setupElement(cardData) {
 function createCardElement(cardData) {
   const templateSelector = "#element-template";
   const userData = userInfo.getUserInfo();
-  const card = new Card(cardData, userData, templateSelector, onOpenElement, onDeleteElement);
+  const card = new Card(cardData, userData, templateSelector, onOpenElement, onDeleteElement, onLikeElement);
   const cardElement = card.getCardElement();
 
   return cardElement
@@ -185,4 +185,31 @@ function onOpenElement(cardData) {
 
 function onDeleteElement(cardData, cardElement) {
   popupDeletePlace.open(cardData, cardElement);
+}
+
+function onLikeElement(cardData, cardElement) {
+  const userData = userInfo.getUserInfo();
+  const isLiked = cardData.likes.filter(like => like._id === userData._id).length > 0;
+
+  if (isLiked) {
+    api.deleteCardLike(cardData._id)
+    .then((result) => {
+      cardElement.querySelector(".element__like-count").textContent = result.likes.length;
+      cardElement.querySelector(".element__heart-button").classList.remove("element__heart-button_active");
+      cardData.likes = result.likes;
+    })
+    .catch(error => {
+      console.log(error);
+    })
+  } else {
+    api.setCardLike(cardData._id)
+      .then((result) => {
+        cardElement.querySelector(".element__like-count").textContent = result.likes.length;
+        cardElement.querySelector(".element__heart-button").classList.add("element__heart-button_active");
+        cardData.likes = result.likes;
+      })
+      .catch(error => {
+        console.log(error);
+      })
+  }
 }
