@@ -49,9 +49,7 @@ const api = new Api({
   }
 });
 
-profileAvatar.style.display = "none";
-profileInfo.style.display = "none";
-profileAddButton.style.display = "none";
+startProfileLoading();
 api.getProfilInfo()
   .then(result => {
     profileAvatar.src = new URL(result.avatar, import.meta.url);
@@ -62,12 +60,24 @@ api.getProfilInfo()
     console.log(error);
   })
   .finally(() => {
-    profileLoader.style.display = "none";
-    profileAvatar.style.display = "block";
-    profileInfo.style.display = "block";
-    profileAddButton.style.display = "block";    
+    stopProfileLoading();   
   });
 
+function startProfileLoading() {
+  profileLoader.style.display = "inline-block";
+  profileAvatar.style.display = "none";
+  profileInfo.style.display = "none";
+  profileAddButton.style.display = "none";  
+}
+
+function stopProfileLoading() {
+  profileLoader.style.display = "none";
+  profileAvatar.style.display = "block";
+  profileInfo.style.display = "block";
+  profileAddButton.style.display = "block";
+}
+
+startElementsLoading();
 api.getInitialCards()
   .then(result => {
     section.renderElements(result);
@@ -76,9 +86,16 @@ api.getInitialCards()
     console.log(error);
   })
   .finally(() => {
-    elementsLoader.style.display = "none";
+    stopElementsLoading();
   });
 
+function startElementsLoading() {
+  elementsLoader.style.display = "inline-block";
+}
+
+function stopElementsLoading() {
+  elementsLoader.style.display = "none";
+}
 
 // Validation
 
@@ -109,7 +126,17 @@ profileEditButton.addEventListener("click", function () {
 });
 
 function updateProfileData(data) {
-  userInfo.setUserInfo(data)
+  startProfileLoading();
+  api.setProfileInfo(data.name, data.occupation)
+    .then(() => {
+      userInfo.setUserInfo(data);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+    .finally(() => {
+      stopProfileLoading();
+    }); 
 }
 
 profileAddButton.addEventListener("click", function () {
@@ -119,8 +146,18 @@ profileAddButton.addEventListener("click", function () {
 });
 
 function addCardData(data) {
-  const cardData = { name: data.name, link: data.occupation };
-  setupElement(cardData);
+  startElementsLoading();
+  api.addCard(data.name, data.occupation)
+    .then(() => {
+      const cardData = { name: data.name, link: data.occupation };
+      setupElement(cardData);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+    .finally(() => {
+      stopElementsLoading();
+    });
 }
 
 // Element
