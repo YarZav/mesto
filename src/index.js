@@ -25,7 +25,7 @@ import { headerLogo,
 
 import { Api } from "./scripts/Api";
 
-// UI elements
+// Classes
 
 const section = new Section(setupElement, ".elements");
 
@@ -35,12 +35,6 @@ const popupImage = new PopupWithImage();
 
 const userInfo = new UserInfo(".profile__name", ".profile__description");
 
-// Setup UI
-
-headerLogo.src = new URL("./images/header_logo.svg", import.meta.url);
-
-// API
-
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-65',
   headers: {
@@ -48,6 +42,12 @@ const api = new Api({
     'Content-Type': 'application/json'
   }
 });
+
+// Setup UI
+
+headerLogo.src = new URL("./images/header_logo.svg", import.meta.url);
+
+// Fetch initial data
 
 fetchProfileInfo();
 
@@ -126,7 +126,7 @@ profileEditButton.addEventListener("click", function () {
 });
 
 function updateProfileData(data) {
-  startProfileLoading();
+  setProfileLoading(true);
   api.setProfileInfo(data.name, data.occupation)
     .then(() => {
       userInfo.setUserInfo(data);
@@ -135,7 +135,7 @@ function updateProfileData(data) {
       console.log(error);
     })
     .finally(() => {
-      stopProfileLoading();
+      setProfileLoading(false)
     }); 
 }
 
