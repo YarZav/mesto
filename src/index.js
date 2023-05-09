@@ -13,9 +13,8 @@ import { PopupWithConfirmation } from "./scripts/PopupWithConfirmation.js";
 import { UserInfo } from "./scripts/UserInfo.js";
 import { headerLogo,
   profileAvatar, 
+  profileEditAvatarButton,
   profileInfo, 
-  profileName, 
-  profileDescription, 
   profileEditButton,
   profileAddButton,
   profileLoader,
@@ -31,11 +30,12 @@ import { Api } from "./scripts/Api";
 const section = new Section(setupElement, ".elements");
 
 const popupProfile = new PopupWithForm(".popup_type_profile", updateProfileData);
+const popupAvatar = new PopupWithForm(".popup_type_avatar", updateAvatar);
 const popupPlace = new PopupWithForm(".popup_type_place", addCard);
 const popupImage = new PopupWithImage();
 const popupDeletePlace = new PopupWithConfirmation(".popup_type_delete-place", deleteCard);
 
-const userInfo = new UserInfo(".profile__name", ".profile__description");
+const userInfo = new UserInfo(".profile__name", ".profile__description", ".profile__avatar");
 
 const api = new Api({
   baseUrl: 'https://mesto.nomoreparties.co/v1/cohort-65',
@@ -59,10 +59,6 @@ function fetchProfileInfo() {
   api.getProfilInfo()
   .then(result => {
     userInfo.setUserInfo(result);
-
-    profileAvatar.src = new URL(result.avatar, import.meta.url);
-    profileName.textContent = result.name;
-    profileDescription.textContent = result.about;
   })
   .catch(error => {
     console.log(error);
@@ -127,10 +123,24 @@ profileEditButton.addEventListener("click", function () {
   popupProfile.open();
 });
 
+profileEditAvatarButton.addEventListener("click", function () {
+  popupAvatar.open();
+});
+
 function updateProfileData(data) {
   api.setProfileInfo(data.name, data.occupation)
     .then(() => {
       userInfo.setUserInfo(data);
+    })
+    .catch(error => {
+      console.log(error);
+    })
+}
+
+function updateAvatar(data) {
+  api.setAvatar(data.occupation)
+    .then((result) => {
+      profileAvatar.src = new URL(result.avatar, import.meta.url);
     })
     .catch(error => {
       console.log(error);
