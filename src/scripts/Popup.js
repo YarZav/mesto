@@ -5,6 +5,7 @@ class Popup {
         this._popupSelector = popupSelector;
 
         this._popup = document.querySelector(popupSelector);
+        this._submitButton = this._popup.querySelector(".popup__button");
         this._popupCrossButton = this._popup.querySelector(".popup__cross-button");
 
         this._handleEscCloseBinder = this._handleEscClose.bind(this);

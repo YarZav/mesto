@@ -29,8 +29,6 @@ class PopupWithForm extends Popup {
 
         const inputValues = this._getInputValues();
         this._submitHandler(inputValues);
-
-        this._popupCrossButton.click();
     }
 
     _reset() {
@@ -58,9 +56,17 @@ class PopupWithForm extends Popup {
     }
 
     setInputValues(data) {
+        this._submitButton.value = "Сохранить";
+
         this._inputList.forEach((input) => {
+            console.log(input.name);
+            console.log(data);
             input.value = data[input.name];
         });
+    }
+
+    setLoading() {
+        this._submitButton.value = "Сохранение...";
     }
 }
 

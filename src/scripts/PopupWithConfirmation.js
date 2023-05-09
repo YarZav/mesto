@@ -17,8 +17,6 @@ class PopupWithConfirmation extends Popup {
         event.preventDefault();
 
         this._submitHandler(this._cardData, this._cardElement);
-
-        this._popupCrossButton.click();
     }
 
     // Overrride public
@@ -36,6 +34,10 @@ class PopupWithConfirmation extends Popup {
         super.close();
 
         this._popup.removeEventListener('click', this._handleCrossButtonClose);
+    }
+
+    setLoading() {
+        this._submitButton.value = "Удаление...";
     }
 }
 

@@ -128,49 +128,69 @@ profileEditAvatarButton.addEventListener("click", function () {
 });
 
 function updateProfileData(data) {
-  api.setProfileInfo(data.name, data.occupation)
-    .then(() => {
-      userInfo.setUserInfo(data);
+  popupProfile.setLoading();
+
+  api.setProfileInfo(data.name, data.about)
+    .then((result) => {
+      userInfo.setUserInfo(result);
     })
     .catch(error => {
       console.log(error);
     })
+    .finally(() => {
+      popupProfile.close();
+    });
 }
 
 function updateAvatar(data) {
-  api.setAvatar(data.occupation)
+  popupAvatar.setLoading();
+
+  api.setAvatar(data.about)
     .then((result) => {
-      profileAvatar.src = new URL(result.avatar, import.meta.url);
+      userInfo.setUserInfo(result);
     })
     .catch(error => {
       console.log(error);
     })
+    .finally(() => {
+      popupAvatar.close();
+    });
 }
 
 profileAddButton.addEventListener("click", function () {
-  const inputValues = { name: "", occupation: "" };
+  const inputValues = { name: "", about: "" };
   popupProfile.setInputValues(inputValues);
   popupPlace.open();
 });
 
 function addCard(data) {
-  api.addCard(data.name, data.occupation)
+  popupPlace.setLoading();
+
+  api.addCard(data.name, data.about)
     .then((result) => {
       setupElement(result);
     })
     .catch(error => {
       console.log(error);
     })
+    .finally(() => {
+      popupPlace.close();
+    });
 }
 
 function deleteCard(cardData, cardElement) {
+  popupDeletePlace.setLoading();
+
   api.deleteCard(cardData._id)
     .then((result) => {
       cardElement.remove();
     })
     .catch(error => {
       console.log(error);
-    })
+    })    
+    .finally(() => {
+      popupDeletePlace.close();
+    });
 }
 
 // Element
