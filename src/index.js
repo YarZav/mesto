@@ -200,12 +200,14 @@ function onDeleteElement(cardData, cardElement) {
 function onLikeElement(cardData, cardElement) {
   const userData = userInfo.getUserInfo();
   const isLiked = cardData.likes.filter(like => like._id === userData._id).length > 0;
+  const likeCount = cardElement.querySelector(".element__like-count");
+  const heartButton = cardElement.querySelector(".element__heart-button");
 
   if (isLiked) {
     api.deleteCardLike(cardData._id)
     .then((result) => {
-      cardElement.querySelector(".element__like-count").textContent = result.likes.length;
-      cardElement.querySelector(".element__heart-button").classList.remove("element__heart-button_active");
+      likeCount.textContent = result.likes.length;
+      heartButton.classList.remove("element__heart-button_active");
       cardData.likes = result.likes;
     })
     .catch(error => {
@@ -214,8 +216,8 @@ function onLikeElement(cardData, cardElement) {
   } else {
     api.setCardLike(cardData._id)
       .then((result) => {
-        cardElement.querySelector(".element__like-count").textContent = result.likes.length;
-        cardElement.querySelector(".element__heart-button").classList.add("element__heart-button_active");
+        likeCount.textContent = result.likes.length;
+        heartButton.classList.add("element__heart-button_active");
         cardData.likes = result.likes;
       })
       .catch(error => {
