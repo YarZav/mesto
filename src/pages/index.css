@@ -23,6 +23,7 @@
 @import url("../blocks/profile/__avatar-container/profile__avatar-container.css");
 @import url("../blocks/profile/__avatar/profile__avatar.css");
 @import url("../blocks/profile/__avatar-overlay/profile__avatar-overlay.css");
+@import url("../blocks/profile/__avatar-edit-button/profile__avatar-edit-button.css");
 @import url("../blocks/profile/__info/profile__info.css");
 @import url("../blocks/profile/__edit/profile__edit.css");
 @import url("../blocks/profile/__name/profile__name.css");
