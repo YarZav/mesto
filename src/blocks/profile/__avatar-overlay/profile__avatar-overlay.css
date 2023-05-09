@@ -7,8 +7,6 @@
     height: 100%;
     width: 100%;
     opacity: 0;
-    transition: .3s ease;
-    background-color: #008CBA;
     border-radius: 50%;
     -webkit-transition: .3s;
     -moz-transition: .3s;
