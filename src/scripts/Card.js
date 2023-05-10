@@ -31,9 +31,13 @@ class Card {
         this._cardElementImage.alt = this._cardData.name;
         this._cardElementLikeCount.textContent = this._cardData.likes.length;
         this._cardElementTitle.textContent = this._cardData.name;
-        this._cardElementDeleteButton.style.display = isDeleteButtonShown ? "block" : "none";
         if (isLiked) {
             this._cardElementHeartButton.classList.add("element__heart-button_active");
+        }
+        if (isDeleteButtonShown) {
+            this._cardElementDeleteButton.classList.remove("hidden")
+        } else {
+            this._cardElementDeleteButton.classList.add("hidden")
         }
     }
 
