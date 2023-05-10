@@ -17,8 +17,7 @@ import { headerLogo,
   profileInfo, 
   profileEditButton,
   profileAddButton,
-  profileLoader,
-  elementsLoader
+  loader
 } from "./scripts/constants.js"
 
 // API
@@ -60,48 +59,32 @@ headerLogo.src = new URL("./images/header_logo.svg", import.meta.url);
 
 // Fetch initial data
 
-fetchProfileInfo();
+fetchInitialData();
 
-function fetchProfileInfo() {
-  setProfileLoading(true);
+function fetchInitialData() {
+  setLoading(true);
 
-  api.getProfilInfo()
-  .then(result => {
-    userInfo.setUserInfo(result);
-  })
-  .catch(error => {
+  Promise.all([
+    api.getProfilInfo(),
+    api.getInitialCards()
+  ]) 
+  .then(([initialUserInfo, initialCards]) => {
+    userInfo.setUserInfo(initialUserInfo);
+    section.renderElements(initialCards);
+  }) 
+  .catch((error) => {
     console.log(error);
   })
   .finally(() => {
-    setProfileLoading(false);
-    fetchInitialCards(); 
-  });
+    setLoading(false);
+  })
 }
 
-function fetchInitialCards() {
-  setElementsLoading(true);
-
-  api.getInitialCards()
-  .then(result => {
-    section.renderElements(result);
-  })
-  .catch(error => {
-    console.log(error);
-  })
-  .finally(() => {
-    setElementsLoading(false);
-  });
-}
-
-function setProfileLoading(isLoading) {
-  profileLoader.style.display = isLoading ? "inline-block" : "none";
+function setLoading(isLoading) {
+  loader.style.display = isLoading ? "inline-block" : "none";
   profileAvatar.style.display = isLoading ? "none" : "block";
   profileInfo.style.display = isLoading ? "none" : "block";
   profileAddButton.style.display = isLoading ? "none" : "block";
-}
-
-function setElementsLoading(isLoading) {
-  elementsLoader.style.display = isLoading ? "inline-block" : "none";
 }
 
 // Validation
