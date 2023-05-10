@@ -8,8 +8,9 @@ class PopupWithForm extends Popup {
 
         this._submitHandler = submitHandler;
         this._inputList = this._popup.querySelectorAll(".popup__input");
-        this._handleSubmitBinder = this._handleSubmit.bind(this)
         this._submitButton = this._popup.querySelector(".popup__button");
+        this._popupForm = this._popup.querySelector(".popup__form");
+        this._handleSubmitBinder = this._handleSubmit.bind(this);
     }
 
     // Private
@@ -31,10 +32,6 @@ class PopupWithForm extends Popup {
         this._submitHandler(inputValues);
     }
 
-    _reset() {
-        this._inputList.forEach(input => input.value = "");
-    }
-
     // Overrride public
 
     setEventListeners() {
@@ -44,7 +41,7 @@ class PopupWithForm extends Popup {
     }
 
     close() {
-        this._reset();
+        this._popupForm.reset();
 
         super.close();
 
