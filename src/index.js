@@ -30,10 +30,19 @@ import { Api } from "./scripts/Api";
 const section = new Section(setupElement, ".elements");
 
 const popupProfile = new PopupWithForm(".popup_type_profile", updateProfileData);
+popupProfile.setEventListeners();
+
 const popupAvatar = new PopupWithForm(".popup_type_avatar", updateAvatar);
+popupAvatar.setEventListeners();
+
 const popupPlace = new PopupWithForm(".popup_type_place", addCard);
+popupPlace.setEventListeners();
+
 const popupImage = new PopupWithImage();
+popupImage.setEventListeners();
+
 const popupDeletePlace = new PopupWithConfirmation(".popup_type_delete-place", deleteCard);
+popupDeletePlace.setEventListeners();
 
 const userInfo = new UserInfo(".profile__name", ".profile__description", ".profile__avatar");
 

@@ -7,8 +7,8 @@ class PopupWithConfirmation extends Popup {
         super(popupSelector);
 
         this._submitHandler = submitHandler;
-
         this._handleSubmitBinder = this._handleSubmit.bind(this)
+        this._submitButton = this._popup.querySelector(".popup__button");
     }
 
     // Private
