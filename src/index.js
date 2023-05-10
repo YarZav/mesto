@@ -159,8 +159,6 @@ function updateAvatar(data) {
 }
 
 profileAddButton.addEventListener("click", function () {
-  const inputValues = { name: "", about: "" };
-  popupProfile.setInputValues(inputValues);
   popupPlace.open();
 });
 
