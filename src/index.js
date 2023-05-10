@@ -81,10 +81,17 @@ function fetchInitialData() {
 }
 
 function setLoading(isLoading) {
-  loader.style.display = isLoading ? "inline-block" : "none";
-  profileAvatar.style.display = isLoading ? "none" : "block";
-  profileInfo.style.display = isLoading ? "none" : "block";
-  profileAddButton.style.display = isLoading ? "none" : "block";
+  if (isLoading) {
+    loader.classList.remove("hidden");
+    profileAvatar.classList.add("hidden");
+    profileInfo.classList.add("hidden");
+    profileAddButton.classList.add("hidden");
+  } else {
+    loader.classList.add("hidden");
+    profileAvatar.classList.remove("hidden");
+    profileInfo.classList.remove("hidden");
+    profileAddButton.classList.remove("hidden");
+  }
 }
 
 // Validation
