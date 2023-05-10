@@ -21,13 +21,17 @@ class PopupWithConfirmation extends Popup {
 
     // Overrride public
 
+    setEventListeners() {
+        super.setEventListeners();
+
+        this._popup.addEventListener("submit", this._handleSubmitBinder);
+    }
+
     open(cardData, cardElement) {
         super.open();
 
         this._cardData = cardData;
         this._cardElement = cardElement;
-
-        this._popup.addEventListener("submit", this._handleSubmitBinder);
     }
 
     close() {
