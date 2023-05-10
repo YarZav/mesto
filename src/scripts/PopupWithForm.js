@@ -43,14 +43,6 @@ class PopupWithForm extends Popup {
         this._popup.addEventListener("submit", this._handleSubmitBinder);
     }
 
-    open() {
-        super.open();
-
-        this._inputList.forEach((input) => {
-            input.dispatchEvent(new Event('keyup'));
-        });
-    }
-
     close() {
         this._reset();
 
