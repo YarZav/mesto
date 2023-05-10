@@ -16,7 +16,7 @@ class PopupWithConfirmation extends Popup {
     _handleSubmit(event) {
         event.preventDefault();
 
-        this._submitHandler(this._cardData, this._cardElement);
+        this._submitHandler(this._card);
     }
 
     // Overrride public
@@ -27,11 +27,10 @@ class PopupWithConfirmation extends Popup {
         this._popup.addEventListener("submit", this._handleSubmitBinder);
     }
 
-    open(cardData, cardElement) {
+    open(card) {
         super.open();
 
-        this._cardData = cardData;
-        this._cardElement = cardElement;
+        this._card = card;
     }
 
     close() {

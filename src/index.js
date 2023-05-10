@@ -178,12 +178,12 @@ function addCard(data) {
     });
 }
 
-function deleteCard(cardData, cardElement) {
+function deleteCard(card) {
   popupDeletePlace.setLoading(true);
 
-  api.deleteCard(cardData._id)
+  api.deleteCard(card.getCardId())
     .then(() => {
-      cardElement.remove();
+      card.removeCardElement();
       popupDeletePlace.close();
     })
     .catch(error => {
@@ -214,32 +214,23 @@ function onOpenElement(cardData) {
   popupImage.open(cardData);
 }
 
-function onDeleteElement(cardData, cardElement) {
-  popupDeletePlace.open(cardData, cardElement);
+function onDeleteElement(card) {
+  popupDeletePlace.open(card);
 }
 
-function onLikeElement(cardData, cardElement) {
-  const userData = userInfo.getUserInfo();
-  const isLiked = cardData.likes.filter(like => like._id === userData._id).length > 0;
-  const likeCount = cardElement.querySelector(".element__like-count");
-  const heartButton = cardElement.querySelector(".element__heart-button");
-
-  if (isLiked) {
-    api.deleteCardLike(cardData._id)
+function onLikeElement(card) {
+  if (card.isLiked()) {
+    api.deleteCardLike(card.getCardId())
     .then((result) => {
-      likeCount.textContent = result.likes.length;
-      heartButton.classList.remove("element__heart-button_active");
-      cardData.likes = result.likes;
+      card.setCardData(result);
     })
     .catch(error => {
       console.log(error);
     })
   } else {
-    api.setCardLike(cardData._id)
+    api.setCardLike(card.getCardId())
       .then((result) => {
-        likeCount.textContent = result.likes.length;
-        heartButton.classList.add("element__heart-button_active");
-        cardData.likes = result.likes;
+        card.setCardData(result);
       })
       .catch(error => {
         console.log(error);
