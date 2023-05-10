@@ -4,13 +4,13 @@
 import "../pages/index.css"
 
 // Modules
-import { Card } from "../scripts/Card.js";
-import { Section } from "../scripts/Section.js";
-import { FormValidator } from "../scripts/FormValidator.js";
-import { PopupWithForm } from "../scripts/PopupWithForm.js";
-import { PopupWithImage } from "../scripts/PopupWithImage.js";
-import { PopupWithConfirmation } from "../scripts/PopupWithConfirmation.js";
-import { UserInfo } from "../scripts/UserInfo.js";
+import { Card } from "../components/Card.js";
+import { Section } from "../components/Section.js";
+import { FormValidator } from "../components/FormValidator.js";
+import { PopupWithForm } from "../components/PopupWithForm.js";
+import { PopupWithImage } from "../components/PopupWithImage.js";
+import { PopupWithConfirmation } from "../components/PopupWithConfirmation.js";
+import { UserInfo } from "../components/UserInfo.js";
 import { headerLogo,
   profileAvatar, 
   profileEditAvatarButton,
@@ -18,11 +18,11 @@ import { headerLogo,
   profileEditButton,
   profileAddButton,
   loader
-} from "../scripts/constants.js"
+} from "../components/constants.js"
 
 // API
 
-import { Api } from "../scripts/Api";
+import { Api } from "../components/Api";
 
 // Classes
 
