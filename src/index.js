@@ -137,7 +137,7 @@ profileEditAvatarButton.addEventListener("click", function () {
 });
 
 function updateProfileData(data) {
-  popupProfile.setLoading();
+  popupProfile.setLoading(true);
 
   api.setProfileInfo(data.name, data.about)
     .then((result) => {
@@ -147,12 +147,13 @@ function updateProfileData(data) {
       console.log(error);
     })
     .finally(() => {
+      popupProfile.setLoading(false);
       popupProfile.close();
     });
 }
 
 function updateAvatar(data) {
-  popupAvatar.setLoading();
+  popupAvatar.setLoading(true);
 
   api.setAvatar(data.about)
     .then((result) => {
@@ -162,6 +163,7 @@ function updateAvatar(data) {
       console.log(error);
     })
     .finally(() => {
+      popupAvatar.setLoading(false);
       popupAvatar.close();
     });
 }
@@ -173,7 +175,7 @@ profileAddButton.addEventListener("click", function () {
 });
 
 function addCard(data) {
-  popupPlace.setLoading();
+  popupPlace.setLoading(true);
 
   api.addCard(data.name, data.about)
     .then((result) => {
@@ -183,12 +185,13 @@ function addCard(data) {
       console.log(error);
     })
     .finally(() => {
+      popupPlace.setLoading(false);
       popupPlace.close();
     });
 }
 
 function deleteCard(cardData, cardElement) {
-  popupDeletePlace.setLoading();
+  popupDeletePlace.setLoading(true);
 
   api.deleteCard(cardData._id)
     .then((result) => {
@@ -198,6 +201,7 @@ function deleteCard(cardData, cardElement) {
       console.log(error);
     })    
     .finally(() => {
+      popupDeletePlace.setLoading(false);
       popupDeletePlace.close();
     });
 }

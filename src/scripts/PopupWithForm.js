@@ -58,8 +58,8 @@ class PopupWithForm extends Popup {
         });
     }
 
-    setLoading() {
-        this._submitButton.value = "Сохранение...";
+    setLoading(isLoading) {
+        this._submitButton.value = isLoading ? "Сохранение..." : "Сохранить";
     }
 }
 

@@ -40,8 +40,8 @@ class PopupWithConfirmation extends Popup {
         this._popup.removeEventListener('click', this._handleCrossButtonClose);
     }
 
-    setLoading() {
-        this._submitButton.value = "Удаление...";
+    setLoading(isLoading) {
+        this._submitButton.value = isLoading ? "Удаление..." : "Да";
     }
 }
 
