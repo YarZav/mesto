@@ -1,16 +1,16 @@
 // Import
 
 // CSS
-import "./pages/index.css";
+import "../pages/index.css"
 
 // Modules
-import { Card } from "./scripts/Card.js";
-import { Section } from "./scripts/Section.js";
-import { FormValidator } from "./scripts/FormValidator.js";
-import { PopupWithForm } from "./scripts/PopupWithForm.js";
-import { PopupWithImage } from "./scripts/PopupWithImage.js";
-import { PopupWithConfirmation } from "./scripts/PopupWithConfirmation.js";
-import { UserInfo } from "./scripts/UserInfo.js";
+import { Card } from "../scripts/Card.js";
+import { Section } from "../scripts/Section.js";
+import { FormValidator } from "../scripts/FormValidator.js";
+import { PopupWithForm } from "../scripts/PopupWithForm.js";
+import { PopupWithImage } from "../scripts/PopupWithImage.js";
+import { PopupWithConfirmation } from "../scripts/PopupWithConfirmation.js";
+import { UserInfo } from "../scripts/UserInfo.js";
 import { headerLogo,
   profileAvatar, 
   profileEditAvatarButton,
@@ -18,11 +18,11 @@ import { headerLogo,
   profileEditButton,
   profileAddButton,
   loader
-} from "./scripts/constants.js"
+} from "../scripts/constants.js"
 
 // API
 
-import { Api } from "./scripts/Api";
+import { Api } from "../scripts/Api";
 
 // Classes
 
@@ -55,7 +55,7 @@ const api = new Api({
 
 // Setup UI
 
-headerLogo.src = new URL("./images/header_logo.svg", import.meta.url);
+headerLogo.src = new URL("../images/header_logo.svg", import.meta.url);
 
 // Fetch initial data
 
