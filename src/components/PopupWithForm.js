@@ -58,6 +58,10 @@ class PopupWithForm extends Popup {
     setLoading(isLoading) {
         this._submitButton.value = isLoading ? "Сохранение..." : this._submitButtonText;
     }
+
+    disableSubmitButton() {
+        this._submitButton.classList.add("popup__button_disabled");
+    }
 }
 
 export { PopupWithForm }

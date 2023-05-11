@@ -123,6 +123,7 @@ profileEditButton.addEventListener("click", function () {
 });
 
 profileEditAvatarButton.addEventListener("click", function () {
+  popupAvatar.disableSubmitButton();
   popupAvatar.open();
 });
 
@@ -160,6 +161,7 @@ function updateAvatar(data) {
 
 profileAddButton.addEventListener("click", function () {
   popupPlace.open();
+  popupPlace.disableSubmitButton();
 });
 
 function addCard(data) {
