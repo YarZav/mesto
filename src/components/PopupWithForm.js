@@ -11,6 +11,7 @@ class PopupWithForm extends Popup {
         this._submitButton = this._popup.querySelector(".popup__button");
         this._popupForm = this._popup.querySelector(".popup__form");
         this._handleSubmitBinder = this._handleSubmit.bind(this);
+        this._submitButtonText = this._submitButton.value
     }
 
     // Private
@@ -44,13 +45,9 @@ class PopupWithForm extends Popup {
         this._popupForm.reset();
 
         super.close();
-
-        this._popup.removeEventListener('click', this._handleCrossButtonClose);
     }
 
     setInputValues(data) {
-        this._submitButton.value = "Сохранить";
-
         this._inputList.forEach((input) => {
             console.log(input.name);
             console.log(data);
@@ -59,7 +56,7 @@ class PopupWithForm extends Popup {
     }
 
     setLoading(isLoading) {
-        this._submitButton.value = isLoading ? "Сохранение..." : "Сохранить";
+        this._submitButton.value = isLoading ? "Сохранение..." : this._submitButtonText;
     }
 }
 

@@ -35,8 +35,6 @@ class PopupWithConfirmation extends Popup {
 
     close() {
         super.close();
-
-        this._popup.removeEventListener('click', this._handleCrossButtonClose);
     }
 
     setLoading(isLoading) {
