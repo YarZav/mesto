@@ -61,6 +61,7 @@ class PopupWithForm extends Popup {
 
     disableSubmitButton() {
         this._submitButton.classList.add("popup__button_disabled");
+        this._submitButton.setAttribute("disabled", true);
     }
 }
 
